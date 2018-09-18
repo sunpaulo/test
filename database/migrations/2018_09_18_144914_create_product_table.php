@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Models\Product;
 use App\Models\User;
 
-class CreateUsersTable extends Migration
+class CreateProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +15,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create(User::getTableName(), function (Blueprint $table) {
+        Schema::create(Product::getTableName(), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('name', 30);
+            $table->float('price')->nullable();
+            $table->unsignedInteger('manager_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('manager_id')->references('id')->on(User::getTableName())
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -32,6 +35,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(User::getTableName());
+        Schema::dropIfExists(Product::getTableName());
     }
 }

@@ -15,11 +15,6 @@ trait ModelTrait
         return $this->id;
     }
 
-    protected function getDeletedAtColumn()
-    {
-        return $this->deleted_at;
-    }
-
     public static function getTableName()
     {
         return with(new static())->getTable();

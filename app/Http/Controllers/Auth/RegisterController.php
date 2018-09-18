@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
+use App\Http\Requests\SignUpRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Services\Logical\UserManagement;
+use Illuminate\Auth\Events\Registered;
+use DB;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -40,32 +42,42 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a registration request for the application.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  SignUpRequest  $request
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    protected function validator(array $data)
+    public function register(SignUpRequest $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:' . User::getTableName(),
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        event(new Registered($user = $this->create($request)));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param SignUpRequest $request
      * @return \App\Models\User
+     * @throws \Exception
      */
-    protected function create(array $data)
+    protected function create(SignUpRequest $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        try {
+            DB::beginTransaction();
+
+            $user = UserManagement::createFromRequest($request);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        return $user;
     }
 }
