@@ -43,4 +43,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public function isAdmin()
+    {
+        if ($this->hasRole('admin')) {
+            return true;
+        }
+        return false;
+    }
 }

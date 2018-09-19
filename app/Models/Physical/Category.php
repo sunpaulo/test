@@ -17,7 +17,7 @@ trait Category
      */
     public function setName($value)
     {
-        $this->name = trim($value);
+        $this->name = $value;
 
         return $this;
     }

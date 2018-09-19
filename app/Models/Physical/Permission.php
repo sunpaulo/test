@@ -17,7 +17,7 @@ trait Permission
      */
     public function setName($value)
     {
-        $this->name = trim($value);
+        $this->name = $value;
 
         return $this;
     }
@@ -35,7 +35,7 @@ trait Permission
      */
     public function setDisplayName($value)
     {
-        $this->display_name = trim($value);
+        $this->display_name = $value;
 
         return $this;
     }
@@ -53,7 +53,7 @@ trait Permission
      */
     public function setDescription($value)
     {
-        $this->description = trim($value);
+        $this->description = $value;
 
         return $this;
     }

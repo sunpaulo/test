@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\EntrustRole;
 use App\Models\Physical\Role as Physical;
 use App\Traits\ModelTrait;
@@ -15,7 +16,7 @@ use App\Traits\ModelTrait;
  */
 class Role extends EntrustRole
 {
-    use Physical, ModelTrait;
+    use Physical, ModelTrait, SoftDeletes;
 
     public function __construct(array $attributes = [])
     {

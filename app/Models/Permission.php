@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\ModelTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\EntrustPermission;
 use App\Models\Physical\Permission as Physical;
 
@@ -15,7 +16,7 @@ use App\Models\Physical\Permission as Physical;
  */
 class Permission extends EntrustPermission
 {
-    use Physical, ModelTrait;
+    use Physical, ModelTrait, SoftDeletes;
 
     public function __construct(array $attributes = [])
     {

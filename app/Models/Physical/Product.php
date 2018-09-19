@@ -17,7 +17,7 @@ trait Product
      */
     public function setName($value)
     {
-        $this->name = trim($value);
+        $this->name = $value;
 
         return $this;
     }
@@ -25,17 +25,18 @@ trait Product
     /**
      * @return
      */
-    public function getPrice()
+    public function getCreatorId()
     {
-        return $this->price;
+        return $this->creator_id;
     }
 
     /**
+     * @param $value int
      * @return $this
      */
-    public function setPrice($value)
+    public function setCreatorId(int $value)
     {
-        $this->price = is_int($value) ? $value : (float) $value;
+        $this->creator_id = $value;
 
         return $this;
     }
@@ -43,17 +44,18 @@ trait Product
     /**
      * @return
      */
-    public function getManagerId()
+    public function getModeratorId()
     {
-        return $this->manager_id;
+        return $this->moderator_id;
     }
 
     /**
+     * @param $value int
      * @return $this
      */
-    public function setManagerId(int $value)
+    public function setModeratorId(int $value)
     {
-        $this->manager_id = $value;
+        $this->moderator_id = $value;
 
         return $this;
     }

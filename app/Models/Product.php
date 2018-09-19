@@ -11,8 +11,8 @@ use App\Models\Physical\Product as Physical;
  * Class Product
  * @package App\Models
  * @property $name string
- * @property $price float
- * @property $manager_id integer
+ * @property $creator_id integer
+ * @property $moderator_id integer
  */
 class Product extends Model
 {
@@ -20,5 +20,15 @@ class Product extends Model
 
     protected $table = 'product';
 
-    protected $fillable = ['name', 'price', 'manager_id'];
+    protected $fillable = ['name', 'creator_id', 'moderator_id'];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'product_to_category');
+    }
+
+    public function scopeLastProducts($query, $count)
+    {
+        return $query->orderByDesc($this->getCreatedAtColumn())->take($count)->get();
+    }
 }

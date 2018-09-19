@@ -17,13 +17,16 @@ class CreateProductTable extends Migration
     {
         Schema::create(Product::getTableName(), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 30);
-            $table->float('price')->nullable();
-            $table->unsignedInteger('manager_id');
+            $table->string('name', 50);
+            $table->unsignedInteger('creator_id');
+            $table->unsignedInteger('moderator_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('manager_id')->references('id')->on(User::getTableName())
+            $table->foreign('creator_id')->references('id')->on(User::getTableName())
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('moderator_id')->references('id')->on(User::getTableName())
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
