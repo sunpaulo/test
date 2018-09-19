@@ -7,18 +7,18 @@ trait Category
     /**
      * @return
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
-
+    
     /**
      * @return $this
      */
-    public function setName($value)
+    public function setTitle($value)
     {
-        $this->name = $value;
-
+        $this->title = $value;
+        
         return $this;
     }
 

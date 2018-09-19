@@ -4,6 +4,9 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    const USERS_COUNT = 50;
+    const CATEGORIES_COUNT = 20;
+    const PRODUCTS_COUNT = 50;
     /**
      * Run the database seeds.
      *
@@ -11,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+         $this->call([UserTableSeeder::class,
+            CategoryTableSeeder::class,
+            ProductTableSeeder::class,
+         ]);
     }
 }

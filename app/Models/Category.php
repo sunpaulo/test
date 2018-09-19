@@ -9,7 +9,7 @@ use App\Models\Physical\Category as Physical;
 /**
  * Class Category
  * @package App\Models
- * @property $name string
+ * @property $title string
  * @property $parent_id integer
  */
 class Category extends Model
@@ -18,7 +18,7 @@ class Category extends Model
 
     protected $table = 'category';
 
-    protected $fillable = ['name', 'parent_id'];
+    protected $fillable = ['title', 'parent_id'];
 
     public function products()
     {

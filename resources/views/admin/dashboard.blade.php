@@ -37,7 +37,7 @@
                 <a href="{{ route('admin.category.create') }}" class="btn btn-block btn-default">Create category</a>
                 @foreach($categories as $category)
                     <a href="{{ route('admin.category.edit', $category) }}" class="list-group-item">
-                        <h4 class="list-group-item-heading">{{ $category->name }}</h4>
+                        <h4 class="list-group-item-heading">{{ $category->title }}</h4>
                         <p class="list-group-item-text">
                             Products with same category:
                             {{ $category->products()->count() }}
@@ -51,7 +51,7 @@
                     <a href="{{ route('admin.product.edit', $product) }}" class="list-group-item">
                         <h4 class="list-group-item-heading">{{ $product->name }}</h4>
                         <p class="list-group-item-text">
-                            {{ $product->categories()->pluck('name')->implode(', ') }}
+                            {{ $product->categories()->pluck('title')->implode(', ') }}
                         </p>
                     </a>
                 @endforeach

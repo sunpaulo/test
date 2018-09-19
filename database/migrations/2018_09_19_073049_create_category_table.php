@@ -16,7 +16,7 @@ class CreateCategoryTable extends Migration
     {
         Schema::create(Category::getTableName(), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->unique();
+            $table->string('title', 50)->unique();
             $table->unsignedInteger('parent_id')->default(0);
             $table->timestamps();
             $table->softDeletes();

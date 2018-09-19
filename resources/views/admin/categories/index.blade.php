@@ -15,13 +15,13 @@
             <i class="fa fa-plus-square-o"></i> Create category</a>
         <table class="table table-striped">
             <thead>
-            <th>Name</th>
+            <th>Title</th>
             <th class="text-right">Action</th>
             </thead>
             <tbody>
             @forelse($categories as $category)
                 <tr>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->title }}</td>
                     <td class="text-right">
                         <form action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm
                         ('Delete?')) { return true }else{ return false }" method="post">
