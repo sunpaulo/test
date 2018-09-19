@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RoleEnum;
 use App\Traits\ModelTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,7 +13,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\Models\Physical\User as Physical;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 /**
  * Class User
@@ -20,6 +20,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @property $name string
  * @property $email string
  * @property $password string
+ * @property $role string
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
@@ -28,30 +29,21 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         CanResetPassword,
         Physical,
         ModelTrait,
-        SoftDeletes,
-        EntrustUserTrait
-    {
-        EntrustUserTrait ::can insteadof Authorizable; //add insteadof avoid php trait conflict resolution
-    }
+        SoftDeletes;
 
     protected $table = 'user';
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'role'
     ];
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'role_user');
-    }
 
     public function isAdmin()
     {
-        if ($this->hasRole('admin')) {
+        if ($this->getRole() === RoleEnum::ADMIN) {
             return true;
         }
         return false;

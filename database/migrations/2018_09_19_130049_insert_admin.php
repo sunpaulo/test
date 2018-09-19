@@ -18,9 +18,8 @@ class InsertAdmin extends Migration
             ->setName('Admin')
             ->setEmail('admin@admin.com')
             ->setPasswordAttribute('secret#123')
+            ->setRole(RoleEnum::ADMIN)
             ->save();
-
-        $user->attachRole(1);
     }
 
     /**

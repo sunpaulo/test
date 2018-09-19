@@ -66,6 +66,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            <h1>{{ \App\Models\Customer::all()->count() }}</h1>
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth

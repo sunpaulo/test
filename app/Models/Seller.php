@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Enums\RoleEnum;
-use App\Models\Interfaces\UserRoleInterface;
+use App\Models\Interfaces\RoleInterface;
 
-class Seller extends User implements UserRoleInterface
+class Seller extends User implements RoleInterface
 {
-    public function getUserRole()
+    public function newQuery()
     {
-        return RoleEnum::SELLER;
+        return parent::newQuery()->where('role', RoleEnum::SELLER);
     }
 }

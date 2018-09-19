@@ -57,4 +57,22 @@ trait User
 
         return $this;
     }
+    
+    /**
+     * @return
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+    
+    /**
+     * @return $this
+     */
+    public function setRole($value)
+    {
+        $this->role = $value;
+        
+        return $this;
+    }
 }

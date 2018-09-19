@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Enums\RoleEnum;
+use App\Models\Interfaces\RoleInterface;
 
-class Customer extends Model
+class Customer extends User implements RoleInterface
 {
-    //
+    public function newQuery()
+    {
+        return parent::newQuery()->where('role', RoleEnum::CUSTOMER);
+    }
 }

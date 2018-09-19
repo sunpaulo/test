@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Models\User;
+use App\Enums\RoleEnum;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,12 @@ use App\Models\User;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $roles = [RoleEnum::SELLER, RoleEnum::CUSTOMER];
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('secret'), // secret
+        'role' => $roles[array_rand($roles)],
         'remember_token' => str_random(10),
     ];
 });

@@ -4,7 +4,6 @@ namespace App\Services\Logical;
 
 use App\Enums\RoleEnum;
 use App\Http\Requests\SignUpRequest;
-use App\Models\Role;
 use App\Models\User;
 
 class UserManagement
@@ -15,11 +14,11 @@ class UserManagement
      */
     public static function createFromRequest(SignUpRequest $request)
     {
-        /** @var User $user */
-        $user = User::create($request->all());
-
-        $role = $request->filled('role') ? $request->input('role') : RoleEnum::CUSTOMER;
-        $user->attachRole(Role::where('name', $role)->first()->id);
+        $user = new User();
+        $user->setName($request->input('name'))
+            ->setEmail($request->input('email'))
+            ->setRole($request->filled('role') ? $request->input('role') : RoleEnum::CUSTOMER)
+            ->save();
 
         return $user;
     }
