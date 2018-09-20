@@ -23,12 +23,20 @@
             </div>
             <div class="col-sm-3">
                 <div class="jumbotron">
-                    <p><span class="label label-primary">Quests 0</span></p>
+                    <p>
+                        <a href="#" class="label label-primary">
+                            Sellers {{ $sellers_count }}
+                        </a>
+                    </p>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="jumbotron">
-                    <p><span class="label label-primary">Today 0</span></p>
+                    <p>
+                        <a href="#" class="label label-primary">
+                            Customers {{ $customers_count }}
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>

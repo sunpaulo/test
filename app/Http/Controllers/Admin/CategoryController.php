@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('admin.categories.index', [
-            'categories' => Category::orderByDesc('updated_at')->paginate(20)
+            'categories' => Category::orderByDesc('id')->paginate(10)
         ]);
     }
 
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         return view('admin.categories.create', [
             'category' => [],
-            'categories' => Category::with('children')->where('parent_id', '0')->get(),
+            'categories' => Category::with('children')->whereNull('parent_id')->get(),
             'delimiter' => '',
         ]);
     }
@@ -41,10 +41,9 @@ class CategoryController extends Controller
      * @param  CreateCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCategoryRequest $request)
+    public function store(Request $request)
     {
-        $category = new Category($request->all());
-        $category->save();
+        Category::create($request->all());
 
         return redirect()->route('admin.category.index');
     }
@@ -70,7 +69,7 @@ class CategoryController extends Controller
     {
         return view('admin.categories.edit',  [
             'category' => $category,
-            'categories' => Category::with('children')->where('parent_id', '0')->get(),
+            'categories' => Category::with('children')->whereNull('parent_id')->get(),
             'delimiter' => ''
         ]);
     }

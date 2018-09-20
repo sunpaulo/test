@@ -13,7 +13,7 @@
             @endisset
 
     >
-        {!! $delimiter or "" !!}{{ $category_list->name or "" }}
+        {!! $delimiter or "" !!}{{ $category_list->title or "" }}
     </option>
 
     @if (count($category_list->children) > 0)

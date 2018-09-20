@@ -3,7 +3,7 @@
        value="{{ $product->name or "" }}" required>
 
 <label for="categories">Categories</label>
-<select name="categories[]" multiple="" id="categories" class="form-control">
+<select name="categories[]" multiple="" id="categories" class="form-control" size="15">
     @include('admin.products.partials.categories', ['categories' => $categories])
 </select>
 

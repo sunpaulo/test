@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateCategoryRequest extends FormRequest
@@ -15,8 +14,8 @@ class CreateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:1|max:50|unique:' . Category::getTableName(),
-            'parent_id' => 'nullable|integer'
+            'title' => 'required|string|min:1|max:50|unique:category',
+            'parent_id' => 'nullable|integer|exists:category,id'
         ];
     }
 }

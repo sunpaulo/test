@@ -14,11 +14,7 @@ class UserManagement
      */
     public static function createFromRequest(SignUpRequest $request)
     {
-        $user = new User();
-        $user->setName($request->input('name'))
-            ->setEmail($request->input('email'))
-            ->setRole($request->filled('role') ? $request->input('role') : RoleEnum::CUSTOMER)
-            ->save();
+        $user = User::create($request->all());
 
         return $user;
     }

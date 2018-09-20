@@ -15,7 +15,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:5|max:50|unique:' . Category::getTableName() . ',' . $this->id,
+            'title' => 'required|string|min:5|max:50|unique:' . Category::getTableName() . ',' . $this->id,
             'parent_id' => 'nullable|integer|exists:' . Category::getTableName() . ',id'
         ];
     }

@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.products.index', [
-            'products' => Product::orderByDesc('updated_at')->paginate(20)
+            'products' => Product::orderByDesc('id')->paginate(10)
         ]);
     }
 
@@ -33,7 +33,7 @@ class ProductController extends Controller
     {
         return view('admin.products.create', [
             'product' => [],
-            'categories' => Category::with('children')->where('parent_id', 0)->get(),
+            'categories' => Category::with('children')->whereNull('parent_id')->get(),
             'delimiter' => ''
         ]);
     }
@@ -58,9 +58,7 @@ class ProductController extends Controller
             throw $e;
         }
 
-        return view('admin.products.index', [
-            'products' => Product::orderByDesc('id')->paginate(20)
-        ]);
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -84,7 +82,7 @@ class ProductController extends Controller
     {
         return view('admin.products.edit', [
             'product' => $product,
-            'categories' => Category::with('children')->where('parent_id', 0)->get(),
+            'categories' => Category::with('children')->whereNull('parent_id')->get(),
             'delimiter' => ''
         ]);
     }
@@ -110,9 +108,7 @@ class ProductController extends Controller
             throw $e;
         }
 
-        return view('admin.products.index', [
-            'products' => Product::orderByDesc('id')->paginate(20)
-        ]);
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -135,8 +131,6 @@ class ProductController extends Controller
             throw $e;
         }
 
-        return view('admin.products.index', [
-            'products' => Product::orderByDesc('id')->paginate(20)
-        ]);
+        return redirect()->route('admin.product.index');
     }
 }
