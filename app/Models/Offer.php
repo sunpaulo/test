@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use App\Traits\ModelTrait;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Physical\Offer as Physical;
+
+/**
+ * Class Offer
+ * @package App\Models
+ * @property $product_id integer
+ * @property $seller_id integer
+ * @property $price float
+ */
+class Offer extends Model
+{
+    use ModelTrait, Physical;
+
+    protected $table = 'offer';
+
+    protected $fillable = ['product_id', 'seller_id', 'price'];
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class, 'seller_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+}

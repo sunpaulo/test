@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.products.index', [
-            'products' => Product::orderByDesc('id')->paginate(10)
+            'products' => Product::orderByDesc('id')->paginate(20)
         ]);
     }
 

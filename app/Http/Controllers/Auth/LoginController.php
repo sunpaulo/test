@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function redirectTo()
+    {
+        if (Auth::user()->getRole() === RoleEnum::ADMIN) {
+            return route('admin.index');
+        } elseif (Auth::user()->getRole() === RoleEnum::SELLER) {
+            return route('seller.index') ?? route('home');
+        } elseif (Auth::user()->getRole() === RoleEnum::CUSTOMER) {
+            return route('customer.index') ?? route('home');
+        }
     }
 }

@@ -7,8 +7,8 @@ use App\Models\Interfaces\RoleInterface;
 
 class Customer extends User implements RoleInterface
 {
-    public function newQuery()
+    public function getUserRole()
     {
-        return parent::newQuery()->where('role', RoleEnum::CUSTOMER);
+        return RoleEnum::CUSTOMER;
     }
 }

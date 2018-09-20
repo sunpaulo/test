@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductTableSeeder extends DatabaseSeeder
 {
@@ -13,10 +14,8 @@ class ProductTableSeeder extends DatabaseSeeder
     {
         factory(Product::class, self::PRODUCTS_COUNT)->create()->each(function (Product $product) {
             // Attaching a different number of categories
-            $end = rand(0, 3);
-            if ($end > 1) {
-                $product->categories()->attach(range(1, $end));
-            }
+            $cat = Category::inRandomOrder()->take(rand(0, 3))->get();
+            $product->categories()->attach($cat);
         });
     }
 }

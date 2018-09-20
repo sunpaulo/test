@@ -41,11 +41,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password', 'remember_token', 'role'
     ];
 
-    public function isAdmin()
+    public function newQuery()
     {
-        if ($this->getRole() === RoleEnum::ADMIN) {
-            return true;
-        }
-        return false;
+        // get all users in User model
+        $roles = method_exists($this, 'getUserRole') ? $this->getUserRole() : RoleEnum::values();
+
+        return parent::newQuery()->whereIn('role', (array)$roles);
     }
 }

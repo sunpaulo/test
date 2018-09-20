@@ -22,9 +22,16 @@ class Product extends Model
 
     protected $fillable = ['name', 'creator_id', 'moderator_id'];
 
+    protected $hidden = ['creator_id', 'moderator_id'];
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'product_to_category');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'product_id');
     }
 
     public function scopeLastProducts($query, $count)

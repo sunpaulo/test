@@ -37,7 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                        @auth
-                           @if (Auth::user()->isAdmin())
+                           @if (Auth::user()->getRole() === 'admin')
                                <li><a href="{{ route('admin.index') }}">Status panel</a></li>
                            @endif
                        @endauth

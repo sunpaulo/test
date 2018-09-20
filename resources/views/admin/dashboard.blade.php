@@ -41,6 +41,26 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-4 pull-left">
+                <div class="jumbotron">
+                    <p class="text-center">
+                        <a href="" class="label label-primary">
+                            Offers {{ $offers_count }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-4 pull-right">
+                <div class="jumbotron">
+                    <p class="text-center">
+                        <a href="" class="label label-primary">
+                            Other
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-6">
                 <a href="{{ route('admin.category.create') }}" class="btn btn-block btn-default">Create category</a>
                 @foreach($categories as $category)
@@ -59,7 +79,12 @@
                     <a href="{{ route('admin.product.edit', $product) }}" class="list-group-item">
                         <h4 class="list-group-item-heading">{{ $product->name }}</h4>
                         <p class="list-group-item-text">
-                            {{ $product->categories()->pluck('title')->implode(', ') }}
+                            <span class="label label-info">Offers: {{ $product->offers()->count() }}</span>
+                            @if ($product->categories()->count())
+                                <span class="label label-default">
+                                     {{ "Categories: " . $product->categories()->pluck('title')->implode(', ')}}
+                                </span>
+                            @endif
                         </p>
                     </a>
                 @endforeach

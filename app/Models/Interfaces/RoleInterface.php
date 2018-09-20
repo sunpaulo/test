@@ -4,5 +4,5 @@ namespace App\Models\Interfaces;
 
 interface RoleInterface
 {
-    public function newQuery();
+    public function getUserRole();
 }

@@ -6,7 +6,7 @@ use App\Enums\RoleEnum;
 use Closure;
 use Auth;
 
-class IsAdmin
+class IsSeller
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,9 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->getRole() === RoleEnum::ADMIN) {
+        if (Auth::user()->getRole() === RoleEnum::SELLER) {
             return $next($request);
         }
-        return redirect('home');
+        return $next($request);
     }
 }

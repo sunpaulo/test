@@ -10,9 +10,19 @@ namespace App\Traits;
  */
 trait ModelTrait
 {
-    protected function getId()
+    public function getId()
     {
         return $this->id;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->{$this->getCreatedAtColumn()};
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->{$this->getUpdatedAtColumn()};
     }
 
     public static function getTableName()

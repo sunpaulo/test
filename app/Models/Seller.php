@@ -7,8 +7,13 @@ use App\Models\Interfaces\RoleInterface;
 
 class Seller extends User implements RoleInterface
 {
-    public function newQuery()
+    public function getUserRole()
     {
-        return parent::newQuery()->where('role', RoleEnum::SELLER);
+        return RoleEnum::SELLER;
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'seller_id');
     }
 }

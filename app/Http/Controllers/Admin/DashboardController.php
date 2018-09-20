@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Offer;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
@@ -19,6 +20,7 @@ class DashboardController extends Controller
             'products_count' => Product::count(),
             'sellers_count' => Seller::count(),
             'customers_count' => Customer::count(),
+            'offers_count' => Offer::count()
         ]);
     }
 }

@@ -118,4 +118,8 @@ return [
 
     'attributes' => [],
 
+    'messages' => [
+        'my-product-offer' => 'Access denied',
+    ],
+
 ];
