@@ -21,6 +21,6 @@ class IsCustomer
             return $next($request);
         }
 
-        return $next($request);
+        return redirect()->route(Auth::user()->getRole() . '.index');
     }
 }

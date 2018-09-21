@@ -21,6 +21,6 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect('home');
+        return redirect()->route(Auth::user()->getRole() . '.index');
     }
 }
