@@ -20,6 +20,7 @@ class IsSeller
         if (Auth::user()->getRole() === RoleEnum::SELLER) {
             return $next($request);
         }
+
         return $next($request);
     }
 }

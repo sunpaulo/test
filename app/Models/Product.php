@@ -31,11 +31,18 @@ class Product extends Model
 
     public function offers()
     {
-        return $this->hasMany(Offer::class, 'product_id');
+        return $this->hasMany(Offer::class);
     }
 
     public function scopeLastProducts($query, $count)
     {
         return $query->orderByDesc($this->getCreatedAtColumn())->take($count)->get();
+    }
+
+    public function scopeOwnProductOffers($query, $user_id)
+    {
+        return $query->whereHas('offers', function ($q) use ($user_id) {
+            $q->whereSellerId($user_id);
+         });
     }
 }

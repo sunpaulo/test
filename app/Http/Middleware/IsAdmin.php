@@ -20,6 +20,7 @@ class IsAdmin
         if (Auth::user()->getRole() === RoleEnum::ADMIN) {
             return $next($request);
         }
+
         return redirect('home');
     }
 }

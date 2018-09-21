@@ -4,7 +4,7 @@
 
     <div class="container">
         @component('admin.components.breadcrumb')
-            @slot('title') Offers list @endslot
+            @slot('title') My offers list @endslot
             @slot('parent') Main @endslot
             @slot('active') Offers @endslot
         @endcomponent
@@ -13,46 +13,30 @@
 
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>Product name</th>
-                    <th class="text-left">Created at</th>
-                    <th class="text-center">Action</th>
-                </tr>
+            <tr>
+                <th>Product id</th>
+                <th>Product name</th>
+                <th class="text-left">Created at</th>
+                <th class="text-left">Offered at</th>
+                <th>Price</th>
+            </tr>
             </thead>
             <tbody>
-            @forelse($products as $product)
-                    @if ($product->offers()->where('seller_id', Auth::id())->exists())
-                    <tr>
-                        <td class="bg-success">{{ $product->getName() }}</td>
-                        <td class="bg-success text-left">{{ $product->getCreatedAt() }}</td>
-                        <td class="bg-success text-center"><span class="btn-sm btn-default">Is offered</span></td>
-                    @else
-                    <tr>
-                        <form action="{{ route('seller.offer.store') }}" method="post">
-                            <td>{{ $product->getName() }}</td>
-                            <td class="text-left">{{ $product->getCreatedAt() }}</td>
-                            <td class="text-center">
-                                <a class="btn btn-sm btn-primary" type="submit" onclick="prompt('price?', 0)">
-                                    Add offer
-                                </a>
-                            </td>
-                            <input type="hidden" name="product_id" value="{{ $product->getId() }}">
-                         </form>
-                    @endif
-                    </tr>
-            @empty
-                <tr>
-                    <td colspan="3" class="text-center">
-                        <h2>No data</h2>
-                    </td>
-                </tr>
-            @endforelse
+            @foreach($offers as $offer)
+            <tr>
+                <td>{{ $offer->id }}</td>
+                <td>{{ $offer->product->getName() }}</td>
+                <td>{{ $offer->product->getCreatedAt() }}</td>
+                <td>{{ $offer->getCreatedAt() }}</td>
+                <td>{{ $offer->getPrice() }}</td>
+            </tr>
+            @endforeach
             </tbody>
             <tfoot>
             <tr>
                 <td colspan="3">
                     <ul class="pagination pull-right">
-                        {{ $products->links() }}
+                        {{ $offers->links() }}
                     </ul>
                 </td>
             </tr>

@@ -37,7 +37,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ route('admin.index') }}">Status panel</a>
+                        <a href="{{ route('seller.product.index') }}">Products</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('seller.offer.index') }}">My offers</a>
                     </li>
                 </ul>
 

@@ -20,6 +20,7 @@ class IsCustomer
         if (Auth::user()->getRole() === RoleEnum::CUSTOMER) {
             return $next($request);
         }
+
         return $next($request);
     }
 }

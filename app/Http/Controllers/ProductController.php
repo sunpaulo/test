@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Offer;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Auth;
 
-class OfferController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $offers = Offer::where('seller_id', Auth::id())->with('product');
+        $products = Product::orderByDesc('id');
 
-        return view('seller.offers.index', [
-            'offers' => $offers->paginate(20),
+        if ($request->input('type') == 'offered') {
+            $products->ownProductOffers(Auth::id());
+        }
+
+        return view('seller.products.index', [
+            'products' => $products->paginate(20),
         ]);
     }
 
@@ -27,11 +31,10 @@ class OfferController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     * @param Product $product
      */
-    public function create(Product $product)
+    public function create()
     {
-       //
+        //
     }
 
     /**
@@ -42,29 +45,29 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        Offer::create($request->all());
-
-        return redirect()->route('seller.product.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Offer $offer
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer)
+    public function show(Product $product)
     {
-        //
+        return view('seller.offers.create', [
+            'product' => $product
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Offer  $offer
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Offer $offer)
+    public function edit(Product $product)
     {
         //
     }
@@ -73,10 +76,10 @@ class OfferController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Offer  $offer
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offer $offer)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -84,11 +87,10 @@ class OfferController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Offer  $offer
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
-     * @throws \Exception
      */
-    public function destroy(Offer $offer)
+    public function destroy(Product $product)
     {
         //
     }
