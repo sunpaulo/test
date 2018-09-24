@@ -46,7 +46,7 @@ class LoginController extends Controller
         } elseif (Auth::user()->getRole() === RoleEnum::SELLER) {
             return route('seller.index');
         } elseif (Auth::user()->getRole() === RoleEnum::CUSTOMER) {
-            return route('home');
+            return route('customer.index');
         }
     }
 }

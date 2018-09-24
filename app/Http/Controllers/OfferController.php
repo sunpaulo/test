@@ -9,6 +9,14 @@ use Auth;
 
 class OfferController extends Controller
 {
+    public function getAll()
+    {
+        $offers = Offer::orderByDesc('id')->with('product');
+
+        return view('offers', [
+            'offers' => $offers->paginate(20),
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *

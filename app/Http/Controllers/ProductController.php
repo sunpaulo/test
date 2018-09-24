@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RoleEnum;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Auth;
 
 class ProductController extends Controller
 {
+    public function getAll()
+    {
+        $products = Product::orderByDesc('id');
+
+        return view('products', [
+           'products' => $products->paginate(20),
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +26,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::orderByDesc('id');
-
-        if ($request->input('type') == 'offered') {
+        if (Auth::user()->getRole() === RoleEnum::SELLER && $request->input('type') == 'offered') {
             $products->ownProductOffers(Auth::id());
         }
 

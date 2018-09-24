@@ -31,6 +31,14 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ route('product') }}">Products</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('offer') }}">Offers</a>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -56,6 +64,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route(Auth::user()->getRole() . '.index') }}">Home</a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

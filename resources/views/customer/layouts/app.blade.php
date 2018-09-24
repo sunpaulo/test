@@ -37,10 +37,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ route('seller.product.index') }}">Products</a>
+                        <a href="{{ route('product') }}">Products</a>
                     </li>
                     <li>
-                        <a href="{{ route('seller.offer.index') }}">My offers</a>
+                        <a href="{{ route('offer') }}">Offers</a>
                     </li>
                 </ul>
 

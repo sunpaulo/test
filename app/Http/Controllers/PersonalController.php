@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 class PersonalController extends Controller
 {
-    public function sellerArea()
+    public function personalArea()
     {
-        return view('seller.home');
+        return view(Auth::user()->getRole() . '.home');
     }
 }

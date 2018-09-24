@@ -1,12 +1,10 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.index');
@@ -14,8 +12,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::resource('/product', 'ProductController', ['as' => 'admin']);
 });
 
-Route::group(['middleware' => ['auth', 'seller']], function () {
-    Route::get('/personal-area', 'PersonalController@sellerArea')->name('seller.index');
+Route::group(['prefix' => 'seller','middleware' => ['auth', 'seller']], function () {
+    Route::get('/personal-area', 'PersonalController@personalArea')->name('seller.index');
     Route::resource('/offer', 'OfferController', ['as' => 'seller']);
     Route::resource('/product', 'ProductController', ['as' => 'seller']);
+});
+
+Route::get('/product', 'ProductController@getAll')->name('product');
+Route::get('/offer', 'OfferController@getAll')->name('offer');
+
+Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'customer']], function () {
+    Route::get('/personal-area', 'PersonalController@personalArea')->name('customer.index');
 });
