@@ -24,7 +24,17 @@
                 <tr>
                     <td>{{ $product->getName() }}</td>
                     <td class="text-left">{{ $product->getCreatedAt() }}</td>
-                    <td class="text-center">{{ $product->offers()->count() }}</td>
+                    <td class="text-center">
+                        @if ($product->offers()->count())
+                            <a
+                                href="{{ route('offer') }}?product-id={{$product->id}}">
+                                {{ $product->offers()->count() }}
+                            </a>
+                        @else
+                            <span>{{ $product->offers()->count() }}</span>
+                        @endif
+
+                    </td>
                 </tr>
                 @empty
                     <tr>

@@ -22,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($offers as $offer)
+            @forelse($offers as $offer)
             <tr>
                 <td>{{ $offer->id }}</td>
                 <td>{{ $offer->product->getName() }}</td>
@@ -30,7 +30,13 @@
                 <td>{{ $offer->getCreatedAt() }}</td>
                 <td>{{ $offer->getPrice() }}</td>
             </tr>
-            @endforeach
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <h2>No data</h2>
+                    </td>
+                </tr>
+            @endforelse
             </tbody>
             <tfoot>
             <tr>

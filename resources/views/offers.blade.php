@@ -14,7 +14,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Product id</th>
                 <th>Product name</th>
                 <th class="text-left">Created at</th>
                 <th class="text-left">Offered by</th>
@@ -22,15 +21,20 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($offers as $offer)
+            @forelse($offers as $offer)
                 <tr>
-                    <td>{{ $offer->id }}</td>
                     <td>{{ $offer->product->getName() }}</td>
                     <td>{{ $offer->product->getCreatedAt() }}</td>
                     <td>{{ $offer->seller->name }}</td>
                     <td>{{ $offer->getPrice() }}</td>
                 </tr>
-            @endforeach
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <h2>No data</h2>
+                    </td>
+                </tr>
+            @endforelse
             </tbody>
             <tfoot>
             <tr>

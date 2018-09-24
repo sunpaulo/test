@@ -80,4 +80,9 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    public function redirectTo()
+    {
+        return route(\Auth::user()->getRole() . '.index');
+    }
 }
