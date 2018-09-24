@@ -18,6 +18,7 @@
             <tr>
                 <th>Product name</th>
                 <th class="text-left">Created at</th>
+                <th class="text-center">Quantity of offer</th>
                 <th class="text-center">Action</th>
             </tr>
             </thead>
@@ -27,11 +28,13 @@
                     <tr>
                         <td class="bg-success">{{ $product->getName() }}</td>
                         <td class="bg-success text-left">{{ $product->getCreatedAt() }}</td>
+                        <td class="bg-success text-center">{{ $product->offers()->count() }}</td>
                         <td class="bg-success text-center"><span class="btn-sm btn-default">Is offered</span></td>
                 @else
                     <tr>
                             <td>{{ $product->getName() }}</td>
                             <td class="text-left">{{ $product->getCreatedAt() }}</td>
+                            <td class="text-center">{{ $product->offers()->count() }}</td>
                             <td class="text-center">
                                 <a class="btn btn-sm btn-primary"
                                    href="{{ route('seller.product.show', $product)}}">
