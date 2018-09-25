@@ -48,7 +48,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3">
+                <td colspan="5">
                     <ul class="pagination pull-right">
                         {{ $offers->links() }}
                     </ul>

@@ -53,7 +53,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="pagination pull-right">
                         {{ $products->links() }}
                     </ul>

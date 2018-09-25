@@ -37,7 +37,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ route('offer') }}" class="text-uppercase">offers</a>
+                        <a href="{{ route('offer') }}" class="text-capitalize">offers</a>
                     </li>
                 </ul>
 

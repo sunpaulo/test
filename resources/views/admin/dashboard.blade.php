@@ -67,8 +67,9 @@
                     <a href="{{ route('admin.category.edit', $category) }}" class="list-group-item">
                         <h4 class="list-group-item-heading">{{ $category->title }}</h4>
                         <p class="list-group-item-text">
-                            Products with same category:
-                            {{ $category->products()->count() }}
+                            <span class="label label-default">
+                                {{ "Products: " .  $category->products()->count() }}
+                            </span>
                         </p>
                     </a>
                 @endforeach
