@@ -6,6 +6,7 @@ use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Services\Logical\CategoryManagement;
 
 class CategoryController extends Controller
 {
@@ -43,7 +44,7 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-        Category::create($request->all());
+        $category = CategoryManagement::createFromRequest($request);
 
         return redirect()->route('admin.category.index');
     }
@@ -83,7 +84,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->update($request->all());
+        $category = CategoryManagement::updateFromRequest($request, $category);
 
         return redirect()->route('admin.category.index');
     }

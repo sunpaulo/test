@@ -33,10 +33,7 @@
                     </a>
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="{{ route('product') }}">Products</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('offer') }}">Offers</a>
+                            <a href="{{ route('offer') }}" class="text-uppercase">offers</a>
                         </li>
                     </ul>
                 </div>
@@ -44,11 +41,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                       @auth
-                           @if (Auth::user()->getRole() === 'admin')
-                               <li><a href="{{ route('admin.index') }}">Status panel</a></li>
-                           @endif
-                       @endauth
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

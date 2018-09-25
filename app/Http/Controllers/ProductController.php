@@ -9,14 +9,6 @@ use Auth;
 
 class ProductController extends Controller
 {
-    public function getAll()
-    {
-        $products = Product::orderByDesc('id');
-
-        return view('products', [
-           'products' => $products->paginate(20),
-        ]);
-    }
     /**
      * Display a listing of the resource.
      *

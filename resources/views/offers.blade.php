@@ -3,11 +3,8 @@
 @section('content')
 
     <div class="container">
-        @component('admin.components.breadcrumb')
-            @slot('title') Offers list @endslot
-            @slot('parent') Main @endslot
-            @slot('active') Offers @endslot
-        @endcomponent
+
+        <h2>Offers list</h2>
 
         <hr>
 

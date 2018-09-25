@@ -37,10 +37,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ route('product') }}">Products</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('offer') }}">Offers</a>
+                        <a href="{{ route('offer') }}" class="text-uppercase">offers</a>
                     </li>
                 </ul>
 

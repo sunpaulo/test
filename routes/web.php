@@ -19,7 +19,6 @@ Route::group(['prefix' => 'seller','middleware' => ['auth', 'seller']], function
         ->only(['index']);
 });
 
-Route::get('/product', 'ProductController@getAll')->name('product');
 Route::get('/offer', 'OfferController@getAll')->name('offer');
 
 Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'customer']], function () {
