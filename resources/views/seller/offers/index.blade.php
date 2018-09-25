@@ -14,21 +14,36 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Product id</th>
-                <th>Product name</th>
-                <th class="text-left">Created at</th>
-                <th class="text-left">Offered at</th>
-                <th>Price</th>
+                <th class="col-sm-4 text-left">Product name</th>
+                <th class="col-sm-4 text-center">Competitor prices</th>
+                <th class="col-sm-4 text-right">Set new price</th>
             </tr>
             </thead>
             <tbody>
             @forelse($offers as $offer)
             <tr>
-                <td>{{ $offer->id }}</td>
-                <td>{{ $offer->product->getName() }}</td>
-                <td>{{ $offer->product->getCreatedAt() }}</td>
-                <td>{{ $offer->getCreatedAt() }}</td>
-                <td>{{ $offer->getPrice() }}</td>
+                <td class="text-left">{{ $offer->product->getName() }}</td>
+                <td class="text-center">
+                {{-- Check if product has offers from other sellers --}}
+                @if ($offer->product->offers()->where('id', '<>', $offer->getId())->count() > 0)
+                    {{ $offer->product
+                        ->offers()
+                            ->where('id', '<>', $offer->getId())
+                            ->orderBy('price')
+                            ->limit(5)
+                            ->distinct()
+                            ->pluck('price')
+                            ->implode(', ')
+                    }}
+                @else
+                    <span class="label label-info">No offers</span>
+                @endif
+                </td>
+                <td class="text-right">
+                    <a href="#">
+                        {{ $offer->getPrice() }}
+                    </a>
+                </td>
             </tr>
                 @empty
                 <tr>

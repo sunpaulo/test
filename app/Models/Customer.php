@@ -11,4 +11,9 @@ class Customer extends User implements RoleInterface
     {
         return RoleEnum::CUSTOMER;
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'customer_id');
+    }
 }

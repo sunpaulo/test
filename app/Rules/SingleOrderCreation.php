@@ -2,12 +2,18 @@
 
 namespace App\Rules;
 
-use App\Models\Offer;
+use App\Models\Order;
 use Illuminate\Contracts\Validation\Rule;
-use Auth;
 
-class MyOffer implements Rule
+class SingleOrderCreation implements Rule
 {
+    private $customer_id;
+
+    public function __construct($userId)
+    {
+        $this->customer_id = $userId;
+    }
+
     /**
      * Determine if the validation rule passes.
      *
@@ -17,9 +23,9 @@ class MyOffer implements Rule
      */
     public function passes($attribute, $value)
     {
-        $offer = Offer::find($value);
-
-        return $offer->getSellerId() === Auth::id();
+        return Order::where('offer_id', $value)
+            ->where('customer_id', $this->customer_id)
+            ->doesntExist();
     }
 
     /**

@@ -16,12 +16,17 @@ class Order extends Model
 {
     use ModelTrait, Physical;
 
-    protected $table = 'order';
+    protected $table = 'orders';
 
     protected $fillable = ['offer_id', 'customer_id'];
 
     public function offer()
     {
-        
+        return $this->belongsTo(Offer::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

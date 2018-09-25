@@ -28,7 +28,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $offers = Offer::where('seller_id', Auth::id())->with('product');
+        $offers = Offer::orderByDesc('id')->where('seller_id', Auth::id())->with('product');
 
         return view('seller.offers.index', [
             'offers' => $offers->paginate(20),

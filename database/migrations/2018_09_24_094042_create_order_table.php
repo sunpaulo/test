@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Models\Order;
+use App\Models\Offer;
+Use App\Models\Customer;
 
 class CreateOrderTable extends Migration
 {
@@ -13,9 +16,18 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create(Order::getTableName(), function (Blueprint $table) {
+            $table->unsignedInteger('offer_id');
+            $table->unsignedInteger('customer_id');
             $table->timestamps();
+
+            $table->foreign('offer_id')->references('id')->on(Offer::getTableName())
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('customer_id')->references('id')->on(Customer::getTableName())
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['offer_id', 'customer_id']);
         });
     }
 
@@ -26,6 +38,6 @@ class CreateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists(Order::getTableName());
     }
 }
