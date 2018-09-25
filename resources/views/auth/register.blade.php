@@ -29,8 +29,11 @@
                             <label for="role" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
-                                <input id="role" type="text" class="form-control" name="role" value="{{ old('role') }}"
-                                       autofocus>
+                                <select class="form-control" name="role" id="role">
+                                    @foreach(\App\Enums\RoleEnum::values() as $value)
+                                        <option value="{{ $value }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
 
                                 @if ($errors->has('role'))
                                     <span class="help-block">

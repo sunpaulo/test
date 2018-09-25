@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::orderByDesc('id');
-        if (Auth::user()->getRole() === RoleEnum::SELLER && $request->input('type') == 'offered') {
+        if ($request->input('type') == 'offered') {
             $products->ownProductOffers(Auth::id());
         }
 
