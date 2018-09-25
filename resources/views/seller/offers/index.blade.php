@@ -36,11 +36,11 @@
                             ->implode(', ')
                     }}
                 @else
-                    <span class="label label-info">No offers</span>
+                    <span class="label label-info">Empty</span>
                 @endif
                 </td>
                 <td class="text-right">
-                    <a href="#">
+                    <a class="btn btn-primary" href="{{ route('seller.offer.edit', $offer) }}">
                         {{ $offer->getPrice() }}
                     </a>
                 </td>

@@ -15,7 +15,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 Route::group(['prefix' => 'seller','middleware' => ['auth', 'seller']], function () {
     Route::get('/personal-area', 'PersonalController@personalArea')->name('seller.index');
     Route::resource('/offer', 'OfferController', ['as' => 'seller']);
-    Route::resource('/product', 'ProductController', ['as' => 'seller']);
+    Route::resource('/product', 'ProductController', ['as' => 'seller'])
+        ->only(['index']);
 });
 
 Route::get('/product', 'ProductController@getAll')->name('product');

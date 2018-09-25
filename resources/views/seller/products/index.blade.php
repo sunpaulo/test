@@ -37,7 +37,7 @@
                             <td class="text-center">{{ $product->offers()->count() }}</td>
                             <td class="text-center">
                                 <a class="btn btn-sm btn-primary"
-                                   href="{{ route('seller.product.show', $product)}}">
+                                   href="{{ route('seller.offer.create') . '?product-id=' . $product->getId()}}">
                                     Add offer
                                 </a>
                             </td>

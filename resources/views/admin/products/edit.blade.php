@@ -10,10 +10,9 @@
         @endcomponent
 
         <hr>
-
-            <form action="{{ route('admin.product.update', $product) }}" method="post" class="form-horizontal">
-                {{ csrf_field() }}
-                {{ method_field('put') }}
+        <form action="{{ route('admin.product.update', $product) }}" method="post" class="form-horizontal">
+            {{ csrf_field() }}
+            {{ method_field('put') }}
 
             {{-- Form include --}}
             @include('admin.products.partials.form')

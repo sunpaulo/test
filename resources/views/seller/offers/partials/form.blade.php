@@ -1,10 +1,9 @@
 <label for="">Product name</label>
-<input type="text" class="form-control" name="title" value="{{ $product->name }}" required readonly="readonly">
+<p>{{ $product->name }}</p>
 
 <label for="">Price</label>
 <input type="text" class="form-control" name="price" placeholder="Price"
-       value="" required>
-
+       value="{{ $offer->price or "" }}" required>
 <hr>
 
 <input type="submit" value="Save" class="btn btn-primary">

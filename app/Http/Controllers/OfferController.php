@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetProductRequest;
 use App\Models\Offer;
 use App\Models\Product;
+use App\Services\Logical\OfferManagement;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -39,11 +41,16 @@ class OfferController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     * @param Product $product
+     * @param GetProductRequest $request
      */
-    public function create(Product $product)
+    public function create(GetProductRequest $request)
     {
-       //
+        $product = Product::find($request->input('product-id'));
+
+        return view('seller.offers.create', [
+            'product' => $product,
+            'offer' => [],
+        ]);
     }
 
     /**
@@ -54,7 +61,7 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        Offer::create($request->all());
+        OfferManagement::createFromRequest($request);
 
         return redirect()->route('seller.product.index');
     }
@@ -78,7 +85,10 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        //
+        return view('seller.offers.edit', [
+            'offer' => $offer,
+            'product' => $offer->product,
+        ]);
     }
 
     /**
@@ -90,7 +100,9 @@ class OfferController extends Controller
      */
     public function update(Request $request, Offer $offer)
     {
-        //
+        OfferManagement::updateFromRequest($request, $offer);
+
+        return redirect()->route('seller.offer.index');
     }
 
     /**
