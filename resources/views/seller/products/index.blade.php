@@ -11,8 +11,6 @@
 
         <hr>
 
-        @include('seller.products.partials.radio')
-
         <table class="table table-striped">
             <thead>
             <tr>

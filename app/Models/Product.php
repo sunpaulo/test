@@ -38,11 +38,4 @@ class Product extends Model
     {
         return $query->orderByDesc($this->getCreatedAtColumn())->take($count)->get();
     }
-
-    public function scopeOwnProductOffers($query, $user_id)
-    {
-        return $query->whereHas('offers', function ($q) use ($user_id) {
-            $q->whereSellerId($user_id);
-         });
-    }
 }

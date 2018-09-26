@@ -14,15 +14,17 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th class="col-sm-4 text-left">Product name</th>
-                <th class="col-sm-4 text-center">Competitor prices</th>
-                <th class="col-sm-4 text-right">Set new price</th>
+                <th class="col-sm-3 text-left">Product name</th>
+                <th class="col-sm-3 text-center">Count of orders</th>
+                <th class="col-sm-3 text-center">Competitor prices</th>
+                <th class="col-sm-3 text-right">Set new price</th>
             </tr>
             </thead>
             <tbody>
             @forelse($offers as $offer)
             <tr>
                 <td class="text-left">{{ $offer->product->getName() }}</td>
+                <td class="text-center">{{ $offer->orders->count() }}</td>
                 <td class="text-center">
                 {{-- Check if product has offers from other sellers --}}
                 @if ($offer->product->offers()->where('id', '<>', $offer->getId())->count() > 0)
