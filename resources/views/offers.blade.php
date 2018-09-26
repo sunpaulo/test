@@ -33,17 +33,21 @@
                 @auth
                     @if(Auth::user()->getRole() === \App\Enums\RoleEnum::CUSTOMER)
                         <td class="text-center">
-                            @include('customer.partials.create_offer_form')
+                        @if( $offer->orders()->with('customer')->where('orders.customer_id', Auth::id())->doesntExist())
+                            @include('customer.partials.create_order')
+                        @else
+                            <button class="btn btn-success">Added</button>
+                        @endif
                         </td>
                     @endif
-                @endif
+                @endauth
                 </tr>
-                @empty
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <h2>No data</h2>
-                    </td>
-                </tr>
+            @empty
+            <tr>
+                <td colspan="5" class="text-center">
+                    <h2>No data</h2>
+                </td>
+            </tr>
             @endforelse
             </tbody>
             <tfoot>

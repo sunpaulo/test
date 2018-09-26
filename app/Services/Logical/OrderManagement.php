@@ -13,4 +13,11 @@ class OrderManagement
 
         return $order;
     }
+
+    public static function remove(Order $order)
+    {
+        $order->delete();
+
+        return;
+    }
 }

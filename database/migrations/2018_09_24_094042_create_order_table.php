@@ -17,6 +17,7 @@ class CreateOrderTable extends Migration
     public function up()
     {
         Schema::create(Order::getTableName(), function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('offer_id');
             $table->unsignedInteger('customer_id');
             $table->timestamps();
@@ -26,8 +27,6 @@ class CreateOrderTable extends Migration
 
             $table->foreign('customer_id')->references('id')->on(Customer::getTableName())
                 ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->primary(['offer_id', 'customer_id']);
         });
     }
 

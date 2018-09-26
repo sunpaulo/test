@@ -8,6 +8,7 @@ class DatabaseSeeder extends Seeder
     const CATEGORIES_COUNT = 20;
     const PRODUCTS_COUNT = 50;
     const OFFERS_COUNT = 20;
+    const ORDERS_COUNT = 30;
 
     /**
      * Run the database seeds.
@@ -16,10 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call([UserTableSeeder::class,
-            CategoryTableSeeder::class,
-            ProductTableSeeder::class,
-            OfferTableSeeder::class,
+         $this->call([
+             UserTableSeeder::class,
+             CategoryTableSeeder::class,
+             ProductTableSeeder::class,
+             OfferTableSeeder::class,
+             OrderTableSeeder::class,
          ]);
     }
 }

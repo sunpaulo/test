@@ -18,7 +18,7 @@ use App\Enums\RoleEnum;
 $factory->define(User::class, function (Faker $faker) {
     $roles = [RoleEnum::SELLER, RoleEnum::CUSTOMER];
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName . ' ' . $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => 'secret', // secret
         'role' => $roles[array_rand($roles)],

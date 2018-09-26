@@ -23,5 +23,6 @@ Route::get('/offer', 'OfferController@getAll')->name('offer');
 
 Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'customer']], function () {
     Route::get('/personal-area', 'PersonalController@personalArea')->name('customer.index');
-    Route::post('/order', 'OrderController@store')->name('customer.order.store');
+    Route::resource('/order', 'OrderController', ['as' => 'customer'])
+        ->only(['index', 'store', 'destroy']);
 });

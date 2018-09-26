@@ -39,6 +39,9 @@
                     <li>
                         <a href="{{ route('offer') }}" class="text-capitalize">offers</a>
                     </li>
+                    <li>
+                        <a href="{{ route('customer.order.index') }}" class="text-capitalize">orders</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

@@ -35,6 +35,13 @@
                         <li>
                             <a href="{{ route('offer') }}" class="text-capitalize">offers</a>
                         </li>
+                        @auth
+                        @if(Auth::user()->getRole() === \App\Enums\RoleEnum::CUSTOMER)
+                        <li>
+                            <a href="{{ route('customer.order.index') }}" class="text-capitalize">orders</a>
+                        </li>
+                        @endif
+                        @endauth
                     </ul>
                 </div>
 
