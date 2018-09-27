@@ -27,6 +27,10 @@ class CreateOrderTable extends Migration
 
             $table->foreign('customer_id')->references('id')->on(Customer::getTableName())
                 ->onUpdate('cascade')->onDelete('cascade');
+
+            /* include in prod
+            $table->unique(['offer_id', 'customer_id']);
+            */
         });
     }
 

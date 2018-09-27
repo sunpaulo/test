@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.products.index', [
-            'products' => Product::orderByDesc('id')->paginate(20)
+            'products' => Product::orderByDesc('id')->paginate(Product::COUNT_ON_PAGE)
         ]);
     }
 
@@ -123,7 +123,7 @@ class ProductController extends Controller
         try {
             DB::beginTransaction();
 
-            ProductManagement::remove($product);
+            ProductManagement::delete($product);
 
             DB::commit();
         } catch (\Exception $e) {

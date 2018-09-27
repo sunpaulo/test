@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('admin.categories.index', [
-            'categories' => Category::orderByDesc('id')->paginate(20)
+            'categories' => Category::orderByDesc('id')->paginate(Category::COUNT_ON_PAGE)
         ]);
     }
 
@@ -98,7 +98,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
+        CategoryManagement::delete($category);
 
         return redirect()->route('admin.category.index');
     }

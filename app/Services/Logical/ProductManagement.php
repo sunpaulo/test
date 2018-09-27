@@ -33,11 +33,11 @@ class ProductManagement
         return $product;
     }
 
-    public static function remove(Product $product)
+    public static function delete(Product $product)
     {
         $product->categories()->detach();
         $product->delete();
 
-        return ;
+        return;
     }
 }

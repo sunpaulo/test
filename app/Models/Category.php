@@ -16,6 +16,8 @@ class Category extends Model
 {
     use Physical, ModelTrait;
 
+    const COUNT_ON_PAGE = 20;
+
     protected $table = 'category';
 
     protected $fillable = ['title', 'parent_id'];

@@ -12,6 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Arial";
+        }
+    </style>
 </head>
 <body>
     <div id="app">

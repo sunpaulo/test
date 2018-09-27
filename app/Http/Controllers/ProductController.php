@@ -18,7 +18,7 @@ class ProductController extends Controller
         $products = Product::orderByDesc('id');
 
         return view('seller.products.index', [
-            'products' => $products->paginate(20),
+            'products' => $products->paginate(Product::COUNT_ON_PAGE),
         ]);
     }
 }

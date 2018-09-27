@@ -16,6 +16,8 @@ class Order extends Model
 {
     use ModelTrait, Physical;
 
+    const COUNT_ON_PAGE = 20;
+
     protected $table = 'orders';
 
     protected $fillable = ['offer_id', 'customer_id'];

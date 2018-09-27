@@ -20,7 +20,7 @@ class CreateOfferTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('seller_id');
-            $table->float('price')->nullable();
+            $table->float('price');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on(Product::getTableName())
@@ -29,7 +29,9 @@ class CreateOfferTable extends Migration
             $table->foreign('seller_id')->references('id')->on(Seller::getTableName())
                 ->onUpdate('cascade')->onDelete('cascade');
 
+            /* include in prod
             $table->unique(['product_id', 'seller_id']);
+            */
         });
     }
 

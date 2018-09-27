@@ -4,11 +4,11 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    const USERS_COUNT = 50;
+    const USERS_COUNT = 100;
     const CATEGORIES_COUNT = 20;
-    const PRODUCTS_COUNT = 50;
-    const OFFERS_COUNT = 20;
-    const ORDERS_COUNT = 30;
+    const PRODUCTS_COUNT = 150;
+    const OFFERS_COUNT = 200;
+    const ORDERS_COUNT = 200;
 
     /**
      * Run the database seeds.

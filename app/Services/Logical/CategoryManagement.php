@@ -21,4 +21,11 @@ class CategoryManagement
 
         return $category;
     }
+
+    public static function delete(Category $category)
+    {
+        $category->delete();
+
+        return;
+    }
 }

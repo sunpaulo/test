@@ -15,7 +15,7 @@ class OrderController extends Controller
         $orders = Order::orderByDesc('created_at')->where('customer_id', Auth::id());
 
         return view('customer.orders.index', [
-            'orders' => $orders->paginate(20),
+            'orders' => $orders->paginate(Order::COUNT_ON_PAGE),
         ]);
     }
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateOfferRequest;
 use App\Http\Requests\GetProductRequest;
+use App\Http\Requests\UpdateOfferRequest;
 use App\Models\Offer;
 use App\Models\Product;
 use App\Services\Logical\OfferManagement;
@@ -11,6 +13,10 @@ use Auth;
 
 class OfferController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function getAll(Request $request)
     {
         $offers = Offer::orderByDesc('id')->with('product');
@@ -20,9 +26,10 @@ class OfferController extends Controller
         }
 
         return view('offers', [
-            'offers' => $offers->paginate(20),
+            'offers' => $offers->paginate(Offer::COUNT_ON_PAGE),
         ]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +40,7 @@ class OfferController extends Controller
         $offers = Offer::orderByDesc('id')->where('seller_id', Auth::id())->with('product');
 
         return view('seller.offers.index', [
-            'offers' => $offers->paginate(20),
+            'offers' => $offers->paginate(Offer::COUNT_ON_PAGE),
         ]);
     }
 
@@ -56,10 +63,10 @@ class OfferController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CreateOfferRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateOfferRequest $request)
     {
         OfferManagement::createFromRequest($request);
 
@@ -94,11 +101,11 @@ class OfferController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateOfferRequest  $request
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offer $offer)
+    public function update(UpdateOfferRequest $request, Offer $offer)
     {
         OfferManagement::updateFromRequest($request, $offer);
 

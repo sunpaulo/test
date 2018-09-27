@@ -18,6 +18,8 @@ class Product extends Model
 {
     use ModelTrait, SoftDeletes, Physical;
 
+    const COUNT_ON_PAGE = 20;
+
     protected $table = 'product';
 
     protected $fillable = ['name', 'creator_id', 'moderator_id'];

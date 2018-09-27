@@ -17,6 +17,8 @@ class Offer extends Model
 {
     use ModelTrait, Physical;
 
+    const COUNT_ON_PAGE = 20;
+
     protected $table = 'offer';
 
     protected $fillable = ['product_id', 'seller_id', 'price'];
