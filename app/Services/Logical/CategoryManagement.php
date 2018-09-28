@@ -22,6 +22,10 @@ class CategoryManagement
         return $category;
     }
 
+    /**
+     * @param Category $category
+     * @throws \Exception
+     */
     public static function delete(Category $category)
     {
         $category->delete();

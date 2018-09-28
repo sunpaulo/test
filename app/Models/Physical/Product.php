@@ -2,6 +2,9 @@
 
 namespace App\Models\Physical;
 
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+
 trait Product
 {
     /**
@@ -59,4 +62,25 @@ trait Product
 
         return $this;
     }
+
+    /**
+     * @return
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = Str::slug(mb_substr($this->name, 0, 40) . '-' . Carbon::now()
+                ->format('YmdHi'), '-');
+
+        return $this;
+    }
+
+
 }

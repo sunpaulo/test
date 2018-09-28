@@ -37,6 +37,6 @@ class Category extends Model
 
     public function scopeLastCategories($query, $count)
     {
-        return $query->orderByDesc($this->getCreatedAtColumn())->take($count)->get();
+        return $query->orderByDesc('id')->take($count)->get();
     }
 }

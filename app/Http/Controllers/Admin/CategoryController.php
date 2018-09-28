@@ -98,7 +98,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        CategoryManagement::delete($category);
+        try {
+            CategoryManagement::delete($category);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            throw $e;
+        }
 
         return redirect()->route('admin.category.index');
     }

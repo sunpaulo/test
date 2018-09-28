@@ -14,16 +14,13 @@ use Auth;
 class OfferController extends Controller
 {
     /**
+     * Offers list
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function getAll(Request $request)
+    public function index(Request $request)
     {
-        $offers = Offer::orderByDesc('id')->with('product');
-
-        if ($request->filled('product-id')) {
-            $offers->where('product_id', $request->input('product-id'));
-        }
+        $offers = OfferManagement::getAllOffers($request);
 
         return view('offers', [
             'offers' => $offers->paginate(Offer::COUNT_ON_PAGE),
@@ -35,9 +32,9 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getOwnOffers()
     {
-        $offers = Offer::orderByDesc('id')->where('seller_id', Auth::id())->with('product');
+        $offers = OfferManagement::getPersonalOffers();
 
         return view('seller.offers.index', [
             'offers' => $offers->paginate(Offer::COUNT_ON_PAGE),

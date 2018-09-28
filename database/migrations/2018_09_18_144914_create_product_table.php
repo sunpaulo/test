@@ -18,6 +18,7 @@ class CreateProductTable extends Migration
         Schema::create(Product::getTableName(), function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
+            $table->string('slug')->unique();
             $table->unsignedInteger('creator_id');
             $table->unsignedInteger('moderator_id')->nullable();
             $table->timestamps();

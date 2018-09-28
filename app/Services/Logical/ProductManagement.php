@@ -22,7 +22,7 @@ class ProductManagement
 
     public static function updateFromRequest(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $product->update($request->except('slug'));
 
         // Categories
         $product->categories()->detach();

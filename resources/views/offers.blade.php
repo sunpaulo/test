@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container">
 
         <h2>Offers list</h2>
 
         <hr>
-
+        <a href="{{ route('offer') }}" class="btn btn-primary">All</a>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Product name</th>
+                <th>Product</th>
                 <th class="text-left">Created at</th>
                 <th class="text-left">Offered by</th>
                 <th>Price</th>
@@ -25,9 +24,17 @@
             <tbody>
             @forelse($offers as $offer)
                 <tr>
-                    <td>{{ $offer->product->getName() }}</td>
+                    <td>
+                        <a class="text-info" href="{{ route('offer') }}?product={{ $offer->product->getSlug() }}">
+                            {{$offer->product->getName()}}
+                        </a>
+                    </td>
                     <td>{{ $offer->product->getCreatedAt() }}</td>
-                    <td>{{ $offer->seller->name }}</td>
+                    <td>
+                        <a class="text-info" href="{{ route('offer') }}?seller-id={{ $offer->seller->getId() }}">
+                            {{ $offer->seller->getName() }}
+                        </a>
+                    </td>
                     <td>{{ $offer->getPrice() }}</td>
 
                 @auth

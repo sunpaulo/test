@@ -13,6 +13,7 @@ use App\Models\Physical\Product as Physical;
  * @property $name string
  * @property $creator_id integer
  * @property $moderator_id integer
+ * @property $slug string
  */
 class Product extends Model
 {
@@ -22,7 +23,7 @@ class Product extends Model
 
     protected $table = 'product';
 
-    protected $fillable = ['name', 'creator_id', 'moderator_id'];
+    protected $fillable = ['name', 'slug', 'creator_id', 'moderator_id'];
 
     protected $hidden = ['creator_id', 'moderator_id'];
 
@@ -38,6 +39,6 @@ class Product extends Model
 
     public function scopeLastProducts($query, $count)
     {
-        return $query->orderByDesc($this->getCreatedAtColumn())->take($count)->get();
+        return $query->orderByDesc('id')->take($count)->get();
     }
 }

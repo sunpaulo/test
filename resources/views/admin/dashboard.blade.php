@@ -83,7 +83,7 @@
                             <span class="label label-info">Offers: {{ $product->offers()->count() }}</span>
                             @if ($product->categories()->count())
                                 <span class="label label-default">
-                                     {{ "Categories: " . $product->categories()->pluck('title')->implode(', ')}}
+                                     {{"Categories: " . $product->categories()->take(5)->pluck('title')->implode(', ')}}
                                 </span>
                             @endif
                         </p>

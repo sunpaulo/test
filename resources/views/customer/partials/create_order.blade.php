@@ -4,5 +4,5 @@
 
     <input type="hidden" name="offer_id" value="{{ $offer->getId() }}">
     <input type="hidden" name="customer_id" value="{{ Auth::id() }}">
-    <button type="submit" class="btn btn-default">Add</button>
+    <button type="submit" class="btn btn-default">Subscribe</button>
 </form>

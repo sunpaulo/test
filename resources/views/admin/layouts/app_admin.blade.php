@@ -69,6 +69,14 @@
     @yield('content')
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+</div>
+
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 </body>

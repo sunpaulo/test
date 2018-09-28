@@ -29,7 +29,7 @@ class CreateOfferTable extends Migration
             $table->foreign('seller_id')->references('id')->on(Seller::getTableName())
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            /* include in prod
+            /* @todo include in prod
             $table->unique(['product_id', 'seller_id']);
             */
         });
