@@ -6,7 +6,9 @@
         <h2>Offers list</h2>
 
         <hr>
-        <a href="{{ route('offer') }}" class="btn btn-primary">All</a>
+        @if (!empty(Request::all()))
+            <a href="{{ route('offer') }}" class="btn btn-primary">All</a>
+        @endif
         <table class="table table-striped">
             <thead>
             <tr>
