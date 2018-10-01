@@ -41,4 +41,14 @@ class Product extends Model
     {
         return $query->orderByDesc('id')->take($count)->get();
     }
+
+    public function auctions()
+    {
+        return $this->hasMany(Auction::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

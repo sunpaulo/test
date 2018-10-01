@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-class RoleEnum extends BaseEnum
+class Role extends BaseEnum
 {
     const ADMIN = 'admin';
     const SELLER = 'seller';

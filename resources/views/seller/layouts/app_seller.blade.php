@@ -47,6 +47,9 @@
                     <li>
                         <a href="{{ route('seller.offer.index') }}">My offers</a>
                     </li>
+                    <li>
+                        <a href="{{ route('seller.auction.index') }}">Participation in auctions</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

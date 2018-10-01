@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Models\User;
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 
 class CreateUsersTable extends Migration
 {
@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', RoleEnum::values())->default(RoleEnum::CUSTOMER);
+            $table->enum('role', Role::values())->default(Role::CUSTOMER);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

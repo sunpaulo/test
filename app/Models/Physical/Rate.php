@@ -2,24 +2,24 @@
 
 namespace App\Models\Physical;
 
-trait Order
+trait Rate
 {
     /**
      * @return
      */
-    public function getCustomerId()
+    public function getAuctionId()
     {
-        return $this->customer_id;
+        return $this->auction_id;
     }
-    
+
     /**
      * @param $value int
      * @return $this
      */
-    public function setCustomerId(int $value)
+    public function setAuctionId(int $value)
     {
-        $this->customer_id = $value;
-        
+        $this->auction_id = $value;
+
         return $this;
     }
 
@@ -45,37 +45,18 @@ trait Order
     /**
      * @return
      */
-    public function getProductId()
+    public function getValue()
     {
-        return $this->product_id;
-    }
-
-    /**
-     * @param $value int
-     * @return $this
-     */
-    public function setProductId(int $value)
-    {
-        $this->product_id = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return
-     */
-    public function getPrice()
-    {
-        return $this->price;
+        return $this->value;
     }
 
     /**
      * @param $value float
      * @return $this
      */
-    public function setPrice(float $value)
+    public function setValue(float $value)
     {
-        $this->price = $value;
+        $this->value = $value;
 
         return $this;
     }

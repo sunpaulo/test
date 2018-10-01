@@ -2,7 +2,7 @@
 
 namespace App\Services\Logical;
 
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 use App\Http\Requests\SignUpRequest;
 use App\Models\User;
 

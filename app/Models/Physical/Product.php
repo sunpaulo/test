@@ -74,9 +74,9 @@ trait Product
     /**
      * @return $this
      */
-    public function setSlugAttribute($value)
+    public function setSlugAttribute()
     {
-        $this->attributes['slug'] = Str::slug(mb_substr($this->name, 0, 40) . '-' . Carbon::now()
+        $this->attributes['slug'] = Str::slug(mb_substr($this->getName(), 0, 40) . '-' . Carbon::now()
                 ->format('YmdHi'), '-');
 
         return $this;

@@ -2,7 +2,7 @@
 
 namespace App\Models\Physical;
 
-trait Order
+trait Auction
 {
     /**
      * @return
@@ -11,7 +11,7 @@ trait Order
     {
         return $this->customer_id;
     }
-    
+
     /**
      * @param $value int
      * @return $this
@@ -19,25 +19,6 @@ trait Order
     public function setCustomerId(int $value)
     {
         $this->customer_id = $value;
-        
-        return $this;
-    }
-
-    /**
-     * @return
-     */
-    public function getSellerId()
-    {
-        return $this->seller_id;
-    }
-
-    /**
-     * @param $value int
-     * @return $this
-     */
-    public function setSellerId(int $value)
-    {
-        $this->seller_id = $value;
 
         return $this;
     }
@@ -64,18 +45,37 @@ trait Order
     /**
      * @return
      */
-    public function getPrice()
+    public function getStatus()
     {
-        return $this->price;
+        return $this->status;
+    }
+
+    /**
+     * @param $value string
+     * @return $this
+     */
+    public function setStatus(string $value)
+    {
+        $this->status = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return
+     */
+    public function getOriginPrice()
+    {
+        return $this->origin_price;
     }
 
     /**
      * @param $value float
      * @return $this
      */
-    public function setPrice(float $value)
+    public function setOriginPrice(float $value)
     {
-        $this->price = $value;
+        $this->origin_price = $value;
 
         return $this;
     }

@@ -45,6 +45,9 @@
                         <a href="{{ route('offer') }}" class="text-capitalize">offers</a>
                     </li>
                     <li>
+                        <a href="{{ route('customer.auction.index') }}" class="text-capitalize">auctions</a>
+                    </li>
+                    <li>
                         <a href="{{ route('customer.order.index') }}" class="text-capitalize">orders</a>
                     </li>
                 </ul>

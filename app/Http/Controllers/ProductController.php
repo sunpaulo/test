@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Auth;

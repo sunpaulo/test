@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
@@ -41,11 +41,11 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if (Auth::user()->getRole() === RoleEnum::ADMIN) {
+        if (Auth::user()->getRole() === Role::ADMIN) {
             return route('admin.index');
-        } elseif (Auth::user()->getRole() === RoleEnum::SELLER) {
+        } elseif (Auth::user()->getRole() === Role::SELLER) {
             return route('seller.index');
-        } elseif (Auth::user()->getRole() === RoleEnum::CUSTOMER) {
+        } elseif (Auth::user()->getRole() === Role::CUSTOMER) {
             return route('customer.index');
         }
     }

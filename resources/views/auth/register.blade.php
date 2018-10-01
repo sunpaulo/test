@@ -30,7 +30,7 @@
 
                             <div class="col-md-6">
                                 <select class="form-control" name="role" id="role">
-                                    @foreach(\App\Enums\RoleEnum::values() as $value)
+                                    @foreach(\App\Enums\Role::values() as $value)
                                         <option value="{{ $value }}">{{ $value }}</option>
                                     @endforeach
                                 </select>

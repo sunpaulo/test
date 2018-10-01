@@ -2,18 +2,23 @@
 
 namespace App\Models;
 
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 use App\Models\Interfaces\RoleInterface;
 
 class Customer extends User implements RoleInterface
 {
     public function getUserRole()
     {
-        return RoleEnum::CUSTOMER;
+        return Role::CUSTOMER;
     }
 
     public function orders()
     {
-        return $this->hasMany(Order::class, 'customer_id');
+        return $this->hasMany(Order::class);
+    }
+
+    public function auctions()
+    {
+        return $this->hasMany(Auction::class);
     }
 }

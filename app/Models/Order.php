@@ -9,8 +9,10 @@ use App\Models\Physical\Order as Physical;
 /**
  * Class Order
  * @package App\Models
- * @property $offer_id int
+ * @property $seller_id int
+ * @property $product_id int
  * @property $customer_id int
+ * @property $price float
  */
 class Order extends Model
 {
@@ -20,15 +22,20 @@ class Order extends Model
 
     protected $table = 'orders';
 
-    protected $fillable = ['offer_id', 'customer_id'];
+    protected $fillable = ['seller_id', 'product_id', 'customer_id', 'price'];
 
-    public function offer()
+    public function seller()
     {
-        return $this->belongsTo(Offer::class);
+        return $this->belongsTo(Seller::class);
     }
 
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

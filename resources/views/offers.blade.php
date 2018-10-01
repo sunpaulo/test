@@ -17,7 +17,7 @@
                 <th class="text-left">Offered by</th>
                 <th>Price</th>
                 @auth
-                    @if(Auth::user()->getRole() === \App\Enums\RoleEnum::CUSTOMER)
+                    @if(Auth::user()->getRole() === \App\Enums\Role::CUSTOMER)
                         <th class="text-center">Action</th>
                     @endif
                 @endauth
@@ -40,12 +40,15 @@
                     <td>{{ $offer->getPrice() }}</td>
 
                 @auth
-                    @if(Auth::user()->getRole() === \App\Enums\RoleEnum::CUSTOMER)
+                    @if(Auth::user()->getRole() === \App\Enums\Role::CUSTOMER)
                         <td class="text-center">
-                        @if( $offer->orders()->with('customer')->where('orders.customer_id', Auth::id())->doesntExist())
-                            @include('customer.partials.create_order')
+                        @if( $offer->product->auctions()->with('customer')
+                        ->where('auction.customer_id', Auth::id())
+                        ->where('auction.status', \App\Enums\AuctionStatus::IN_PROGRESS)
+                        ->doesntExist())
+                            @include('customer.partials.init_auction')
                         @else
-                            <button class="btn btn-success">Added</button>
+                            <button class="btn btn-success">Inited</button>
                         @endif
                         </td>
                     @endif

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -19,7 +19,7 @@ class SignUpRequest extends FormRequest
             'name' => 'required|string|min:3|max:30',
             'email' => 'required|string|email|max:50|unique:' . User::getTableName(),
             'password' => 'required|string|min:3|confirmed',
-            'role' => 'nullable|string|in:' . RoleEnum::toValidationString()
+            'role' => 'nullable|string|in:' . Role::toValidationString()
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Models\User;
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ use App\Enums\RoleEnum;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $roles = [RoleEnum::SELLER, RoleEnum::CUSTOMER];
+    $roles = [Role::SELLER, Role::CUSTOMER];
     return [
         'name' => $faker->firstName . ' ' . $faker->lastName,
         'email' => $faker->unique()->safeEmail,

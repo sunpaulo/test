@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 use App\Traits\ModelTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function newQuery()
     {
         // get all users in User model
-        $roles = method_exists($this, 'getUserRole') ? $this->getUserRole() : RoleEnum::values();
+        $roles = method_exists($this, 'getUserRole') ? $this->getUserRole() : Role::values();
 
         return parent::newQuery()->whereIn('role', (array)$roles);
     }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use App\Models\User;
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 
 class InsertAdmin extends Migration
 {
@@ -18,7 +18,7 @@ class InsertAdmin extends Migration
             ->setName('Admin')
             ->setEmail('admin@admin.com')
             ->setPasswordAttribute('secret#123')
-            ->setRole(RoleEnum::ADMIN)
+            ->setRole(Role::ADMIN)
             ->save();
     }
 

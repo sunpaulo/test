@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\RoleEnum;
+use App\Enums\Role;
 use Closure;
 use Auth;
 
@@ -17,7 +17,7 @@ class IsCustomer
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->getRole() === RoleEnum::CUSTOMER) {
+        if (Auth::user()->getRole() === Role::CUSTOMER) {
             return $next($request);
         }
 
