@@ -50,6 +50,9 @@
                     <li>
                         <a href="{{ route('seller.auction.index') }}">Participation in auctions</a>
                     </li>
+                    <li>
+                        <a href="{{ route('seller.order.index') }}">Orders</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

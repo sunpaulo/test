@@ -22,7 +22,7 @@
             <tbody>
             @forelse($offers as $offer)
             <tr>
-                <td class="text-left">{{ $offer->product_id . $offer->product->getName() }}</td>
+                <td class="text-left">{{ $offer->product->getName() }}</td>
                 <td class="text-center">{{ $offer->product->orders()->count() }}</td>
                 <td class="text-right">
                     <a class="btn btn-primary" href="{{ route('seller.offer.edit', $offer) }}">

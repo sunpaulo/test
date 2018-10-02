@@ -13,19 +13,12 @@ class RateController extends Controller
 {
     public function edit(Request $request)
     {
-        /** @var Auction $auction */
-        $auction = Auction::find($request->input('auction-id'));
-        $competitorsPrices = $auction->rates()
-            ->where('seller_id', '<>', Auth::id())
-            ->orderBy('value')
-            ->take(10)
-            ->pluck('value')
-            ->implode(', ');
+        list($auction, $competitorsPrices, $myRate) = RateManagement::getFormForUpdate($request);
 
         return view('seller.auctions.edit', [
             'auction' => $auction,
             'competitorsPrices' => $competitorsPrices,
-            'myRate' => Rate::ownRate($auction->getId())->first()
+            'myRate' => $myRate
         ]);
     }
 
