@@ -14,7 +14,7 @@ class GetProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product-id' => 'required|integer|exists:product,id',
+            'product' => 'required|string|exists:product,slug',
         ];
     }
 }

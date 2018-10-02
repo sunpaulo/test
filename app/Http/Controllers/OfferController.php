@@ -49,7 +49,7 @@ class OfferController extends Controller
      */
     public function create(GetProductRequest $request)
     {
-        $product = Product::find($request->input('product-id'));
+        $product = Product::where('slug', $request->input('product'))->first();
 
         return view('seller.offers.create', [
             'product' => $product,

@@ -30,12 +30,12 @@
                     </a>
                 </td>
             </tr>
-                @empty
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <h2>No data</h2>
-                    </td>
-                </tr>
+            @empty
+            <tr>
+                <td colspan="3" class="text-center">
+                    <h2>No data</h2>
+                </td>
+            </tr>
             @endforelse
             </tbody>
             <tfoot>
