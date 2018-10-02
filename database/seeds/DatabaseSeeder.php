@@ -8,7 +8,6 @@ class DatabaseSeeder extends Seeder
     const CATEGORIES_COUNT = 20;
     const PRODUCTS_COUNT = 150;
     const OFFERS_COUNT = 200;
-    const ORDERS_COUNT = 200;
 
     /**
      * Run the database seeds.
@@ -22,7 +21,6 @@ class DatabaseSeeder extends Seeder
              CategoryTableSeeder::class,
              ProductTableSeeder::class,
              OfferTableSeeder::class,
-//             OrderTableSeeder::class,
          ]);
     }
 }
