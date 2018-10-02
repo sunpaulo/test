@@ -16,7 +16,7 @@ class UpdateRateRequest extends FormRequest
     public function rules()
     {
         return [
-            'auction_id' => [
+            'auction' => [
                 'bail',
                 'required',
                 'integer',
@@ -26,7 +26,7 @@ class UpdateRateRequest extends FormRequest
             'value' => [
                 'required',
                 'numeric',
-                new LowestPrice($this->auction_id)
+                new LowestPrice($this->auction)
             ]
         ];
     }

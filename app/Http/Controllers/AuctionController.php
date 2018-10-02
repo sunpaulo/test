@@ -6,21 +6,21 @@ use App\Models\Auction;
 use App\Services\Logical\AuctionManagement;
 use Illuminate\Http\Request;
 use DB;
-use Auth;
 
 class AuctionController extends Controller
 {
-    public function index()
+    public function customerIndex()
     {
-        $auctions = Auction::orderByDesc('id')->where('customer_id', Auth::id())->with(['product', 'rates']);
+       $auctions = AuctionManagement::getCurrentCustomerAuctions();
+
         return view('customer.auctions.index', [
             'auctions' => $auctions->paginate(Auction::COUNT_ON_PAGE)
         ]);
     }
 
-    public function participation()
+    public function sellerIndex()
     {
-        $auctions = AuctionManagement::getCurrentUserAuctions();
+        $auctions = AuctionManagement::getCurrentSellerAuctions();
 
         // pagination is also included
         return view('seller.auctions.index', [

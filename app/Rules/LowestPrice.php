@@ -9,7 +9,7 @@ class LowestPrice implements Rule
 {
     private $auctionId;
 
-    public function __construct($auction_id)
+    public function __construct(int $auction_id)
     {
         $this->auctionId = $auction_id;
     }
@@ -17,6 +17,7 @@ class LowestPrice implements Rule
     public function passes($attribute, $value)
     {
         $auction = Auction::find($this->auctionId);
+
         return $auction->rates()->where('value', '<', $value)->doesntExist();
     }
 

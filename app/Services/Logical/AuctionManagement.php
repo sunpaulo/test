@@ -54,7 +54,14 @@ class AuctionManagement
         return;
     }
 
-    public static function getCurrentUserAuctions()
+    public static function getCurrentCustomerAuctions()
+    {
+        $auctions = Auction::orderByDesc('id')->where('customer_id', Auth::id())->with(['product', 'rates']);
+
+        return $auctions;
+    }
+
+    public static function getCurrentSellerAuctions()
     {
         $auctions = Auction::whereHas('rates', function ($query) {
             $query->where('seller_id', Auth::id());

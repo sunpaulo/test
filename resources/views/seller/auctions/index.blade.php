@@ -30,7 +30,7 @@
                         <span class="label label-success">Is available</span>
                     </td>
                     <td class="text-right">
-                        <a class="btn btn-success" href="{{route('seller.rate.edit') . "?auction-id=$auction->id"}}">
+                        <a class="btn btn-success" href="{{route('seller.rate.edit') . "?auction=$auction->id"}}">
                             {{ $auction->myRate }}
                         </a>
                     </td>

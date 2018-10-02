@@ -20,7 +20,7 @@ class RateManagement
     public static function getFormForUpdate(Request $request)
     {
         /** @var Auction $auction */
-        $auction = Auction::find($request->input('auction-id'));
+        $auction = Auction::findOrFail($request->input('auction'));
         $competitorsPrices = $auction->rates()
             ->where('seller_id', '<>', Auth::id())
             ->orderBy('value')

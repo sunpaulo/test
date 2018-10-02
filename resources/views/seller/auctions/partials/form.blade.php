@@ -10,5 +10,5 @@
 </div>
 
 <hr>
-<input type="hidden" name="auction_id" value="{{ $auction->getId() }}" required>
+<input type="hidden" name="auction" value="{{ $auction->getId() }}" required>
 <input type="submit" value="Save" class="btn btn-primary">
