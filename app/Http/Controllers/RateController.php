@@ -7,7 +7,6 @@ use App\Models\Auction;
 use App\Models\Rate;
 use App\Services\Logical\RateManagement;
 use Illuminate\Http\Request;
-use Auth;
 
 class RateController extends Controller
 {

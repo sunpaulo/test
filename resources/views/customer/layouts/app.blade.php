@@ -42,13 +42,13 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ route('offer') }}" class="text-capitalize">offers</a>
+                        <a href="{{ route('offer') }}">Offers</a>
                     </li>
                     <li>
-                        <a href="{{ route('customer.auction.index') }}" class="text-capitalize">auctions</a>
+                        <a href="{{ route('customer.auction.index') }}">My auctions</a>
                     </li>
                     <li>
-                        <a href="{{ route('customer.order.index') }}" class="text-capitalize">orders</a>
+                        <a href="{{ route('customer.order.index') }}">Orders</a>
                     </li>
                 </ul>
 

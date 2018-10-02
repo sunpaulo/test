@@ -54,12 +54,12 @@ class AuctionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function update(Request $request, Auction $auction)
+    public function update(Auction $auction)
     {
         try {
             DB::beginTransaction();
 
-            AuctionManagement::updateFromRequest($request, $auction);
+            AuctionManagement::updateFromRequest($auction);
 
             DB::commit();
         } catch (\Exception $e) {

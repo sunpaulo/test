@@ -4,14 +4,34 @@ namespace App\Services\Logical;
 
 use App\Http\Requests\UpdateRateRequest;
 use App\Models\Auction;
+use App\Models\Offer;
 use App\Models\Rate;
 use Illuminate\Http\Request;
 use Auth;
 
 class RateManagement
 {
+    public static function create(Offer $offer, Auction $auction)
+    {
+        $offers = Offer::whereBetween('price', [0.5*$offer->getPrice(), 1.5*$offer->getPrice()])
+            ->where('product_id', $offer->getProductId())
+            ->get();
+
+        /** @var Offer $offer */
+        foreach ($offers as $offer) {
+            $rate = new Rate();
+            $rate->setAuctionId($auction->getId())
+                ->setSellerId($offer->getSellerId())
+                ->setValue($offer->getPrice())
+                ->save();
+        }
+
+        return;
+    }
+
     public static function updateFromRequest(UpdateRateRequest $request, Rate $rate)
     {
+        $rate->auction->touch();
         $rate->update($request->only('value'));
 
         return;

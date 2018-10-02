@@ -2,22 +2,21 @@
 
 namespace App\Services\Logical;
 
-use App\Http\Requests\CreateOrderRequest;
 use App\Models\Order;
+use App\Models\Rate;
+use Auth;
 
 class OrderManagement
 {
-    public static function createFromRequest(CreateOrderRequest $request)
+    public static function create(int $productId, Rate $rate)
     {
-        $order = Order::create($request->all());
+        $order = new Order();
+        $order->setProductId($productId)
+            ->setCustomerId(Auth::id())
+            ->setSellerId($rate->getSellerId())
+            ->setPrice($rate->getValue())
+            ->save();
 
         return $order;
-    }
-
-    public static function remove(Order $order)
-    {
-        $order->delete();
-
-        return;
     }
 }
