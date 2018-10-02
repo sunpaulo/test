@@ -22,7 +22,9 @@ class AuctionManagement
             ->setCustomerId(\Auth::id())
             ->save();
 
-        $offers = Offer::whereBetween('price', [0.8*$offer->getPrice(), 1.2*$offer->getPrice()])->get();
+        $offers = Offer::whereBetween('price', [0.8*$offer->getPrice(), 1.2*$offer->getPrice()])
+            ->where('product_id', $offer->getProductId())
+            ->get();
 
         /** @var Offer $offer */
         foreach ($offers as $offer) {
@@ -54,10 +56,13 @@ class AuctionManagement
 
     public static function getCurrentUserAuctions()
     {
-        $auctions = Auction::where('status', AuctionStatus::IN_PROGRESS)
-            ->with(['rates' => function ($query) {
-                $query->where('seller_id', Auth::id());
-            }]);
+        $auctions = Auction::whereHas('rates', function ($query) {
+            $query->where('seller_id', Auth::id());
+        })->paginate(Auction::COUNT_ON_PAGE);
+
+        foreach ($auctions as &$auction) {
+            $auction->myRate = Rate::ownRate($auction->id)->value('value');
+        }
 
         return $auctions;
     }

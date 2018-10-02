@@ -19,6 +19,8 @@ Route::group(['prefix' => 'seller','middleware' => ['auth', 'seller']], function
     Route::resource('/product', 'ProductController', ['as' => 'seller'])
         ->only(['index']);
     Route::get('/auction', 'AuctionController@participation')->name('seller.auction.index');
+    Route::get('/rate', 'RateController@edit')->name('seller.rate.edit');
+    Route::put('/rate/{rate}', 'RateController@update')->name('seller.rate.update');
 });
 
 Route::get('/offer', 'OfferController@index')->name('offer');

@@ -22,8 +22,9 @@ class AuctionController extends Controller
     {
         $auctions = AuctionManagement::getCurrentUserAuctions();
 
+        // pagination is also included
         return view('seller.auctions.index', [
-            'auctions' => $auctions->paginate(Auction::COUNT_ON_PAGE)
+            'auctions' => $auctions
         ]);
     }
 

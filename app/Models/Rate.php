@@ -29,4 +29,12 @@ class Rate extends Model
     {
         return $this->belongsTo(Seller::class);
     }
+
+    public function scopeOwnRate($query,int $auction_id)
+    {
+        return $query->where([
+            ['seller_id', \Auth::id()],
+            ['auction_id', $auction_id]
+        ]);
+    }
 }

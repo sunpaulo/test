@@ -28,6 +28,8 @@ class CreateRateTable extends Migration
 
             $table->foreign('seller_id')->references('id')->on(Seller::getTableName())
                 ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->unique(['auction_id', 'seller_id']);
         });
     }
 
