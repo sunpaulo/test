@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\AvailableAuction;
-use App\Rules\LowestPrice;
+use App\Rules\LowerPrice;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRateRequest extends FormRequest
@@ -26,7 +26,6 @@ class UpdateRateRequest extends FormRequest
             'value' => [
                 'required',
                 'numeric',
-                new LowestPrice($this->auction)
             ]
         ];
     }

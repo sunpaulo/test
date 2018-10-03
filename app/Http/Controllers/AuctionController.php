@@ -48,25 +48,4 @@ class AuctionController extends Controller
 
         return redirect()->route('offer');
     }
-
-    /**
-     * @param Auction $auction
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function update(Auction $auction)
-    {
-        try {
-            DB::beginTransaction();
-
-            AuctionManagement::updateFromRequest($auction);
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
-
-        return redirect()->route('customer.auction.index');
-    }
 }

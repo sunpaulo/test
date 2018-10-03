@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property $customer_id integer
  * @property $product_id integer
- * @property $origin_price float
  * @property $status string
  */
 class Auction extends Model
@@ -21,7 +20,7 @@ class Auction extends Model
 
     protected $table = 'auction';
 
-    protected $fillable = ['customer_id', 'product_id', 'origin_price', 'status'];
+    protected $fillable = ['customer_id', 'product_id', 'status'];
 
     public function customer()
     {

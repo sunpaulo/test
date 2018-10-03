@@ -20,7 +20,6 @@ class CreateAuctionTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('product_id');
-            $table->float('origin_price');
             $table->enum('status', AuctionStatus::values())->default(AuctionStatus::IN_PROGRESS);
             $table->timestamps();
             $table->softDeletes();

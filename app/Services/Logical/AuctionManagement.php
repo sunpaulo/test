@@ -2,7 +2,6 @@
 
 namespace App\Services\Logical;
 
-use App\Enums\AuctionStatus;
 use Auth;
 use App\Models\Auction;
 use App\Models\Offer;
@@ -17,7 +16,6 @@ class AuctionManagement
         $offer = Offer::find($request->input('offer_id'));
         $auction = new Auction();
         $auction->setProductId($offer->getProductId())
-            ->setOriginPrice($offer->getPrice())
             ->setCustomerId(Auth::id())
             ->save();
 
@@ -25,18 +23,6 @@ class AuctionManagement
         RateManagement::create($offer, $auction);
 
         return $auction;
-    }
-
-    public static function updateFromRequest(Auction $auction)
-    {
-        $auction->setStatus(AuctionStatus::FINISHED)->save();
-        /** @var Rate $rate */
-        $rate = $auction->rates()->orderBy('value')->first();
-
-        // create an order after the auction is closed
-        OrderManagement::create($auction->getProductId(), $rate);
-
-        return;
     }
 
     public static function getCurrentCustomerAuctions()

@@ -9,7 +9,6 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Services\Logical\OfferManagement;
 use Illuminate\Http\Request;
-use Auth;
 
 class OfferController extends Controller
 {

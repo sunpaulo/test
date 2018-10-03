@@ -17,10 +17,17 @@ use App\Enums\Role;
 
 $factory->define(User::class, function (Faker $faker) {
     $roles = [Role::SELLER, Role::CUSTOMER];
+    $role = $roles[array_rand($roles)];
+
+    $name = $faker->firstName . ' ' . $faker->lastName;
+    if ($role === Role::SELLER) {
+        $name = $faker->company;
+    }
+
     return [
-        'name' => $faker->firstName . ' ' . $faker->lastName,
+        'name' => $name,
         'email' => $faker->unique()->safeEmail,
         'password' => 'secret', // secret
-        'role' => $roles[array_rand($roles)],
+        'role' => $role,
     ];
 });

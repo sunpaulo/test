@@ -15,9 +15,8 @@
             <thead>
             <tr>
                 <th>Product name</th>
-                <th class="text-center">Current price</th>
+                <th class="text-center">Prices</th>
                 <th class="text-center">Date of creation</th>
-                <th class="text-center">Origin Price</th>
                 <th class="text-center">Sellers</th>
                 <th class="text-right">Status/Action</th>
             </tr>
@@ -26,13 +25,15 @@
             @forelse($auctions as $auction)
                 <tr>
                     <td>{{ $auction->product->getName() }}</td>
-                    <td class="text-center">{{ $auction->rates()->orderBy('value')->take(1)->value('value') }}</td>
+                    <td class="text-center">
+                        {{ $auction->rates()->orderBy('value')->take(10)->pluck('value')->implode(', ')}}
+                    </td>
                     <td class="text-center">{{ $auction->getCreatedAt() }}</td>
-                    <td class="text-center">{{ $auction->getOriginPrice() }}</td>
                     <td class="text-center">{{ $auction->rates()->count() }}</td>
                     <td class="text-right">
                         @if ($auction->status === \App\Enums\AuctionStatus::IN_PROGRESS)
-                            @include('customer.partials.finish_auction')
+                            <a href="{{ route('customer.order.create') }}?auction={{ $auction->getId() }}" class="btn
+                            btn-primary">Finish</a>
                         @else
                         <button class="btn btn-success">Ordered</button>
                         @endif

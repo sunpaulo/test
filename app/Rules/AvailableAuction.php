@@ -17,7 +17,8 @@ class AvailableAuction implements Rule
      */
     public function passes($attribute, $value)
     {
-        $auction = Auction::find($value);
+        /** @var Auction $auction */
+        $auction = Auction::findOrFail($value);
 
         return $auction->getStatus() === AuctionStatus::IN_PROGRESS;
     }

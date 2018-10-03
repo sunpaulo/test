@@ -60,23 +60,4 @@ trait Auction
 
         return $this;
     }
-
-    /**
-     * @return
-     */
-    public function getOriginPrice()
-    {
-        return $this->origin_price;
-    }
-
-    /**
-     * @param $value float
-     * @return $this
-     */
-    public function setOriginPrice(float $value)
-    {
-        $this->origin_price = $value;
-
-        return $this;
-    }
 }
