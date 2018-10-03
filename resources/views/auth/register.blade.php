@@ -30,9 +30,10 @@
 
                             <div class="col-md-6">
                                 <select class="form-control" name="role" id="role">
-                                    @foreach(\App\Enums\Role::values() as $value)
-                                        <option value="{{ $value }}">{{ $value }}</option>
-                                    @endforeach
+                                    <option value="{{ \App\Enums\Role::CUSTOMER }}" selected="selected">
+                                        Customer
+                                    </option>
+                                    <option value="{{ \App\Enums\Role::SELLER }}">Seller</option>
                                 </select>
 
                                 @if ($errors->has('role'))

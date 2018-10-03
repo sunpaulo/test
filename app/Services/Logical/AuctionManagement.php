@@ -7,7 +7,6 @@ use Auth;
 use App\Models\Auction;
 use App\Models\Offer;
 use App\Models\Rate;
-use Doctrine\DBAL\Query\QueryBuilder;
 use Illuminate\Http\Request;
 
 class AuctionManagement
@@ -51,7 +50,7 @@ class AuctionManagement
     {
         $auctions = Auction::whereHas('rates', function ($query) {
             $query->where('seller_id', Auth::id());
-        })->paginate(Auction::COUNT_ON_PAGE);
+        })->orderByDesc('updated_at')->paginate(Auction::COUNT_ON_PAGE);
 
         foreach ($auctions as &$auction) {
             $auction->myRate = Rate::ownRate($auction->id)->value('value');

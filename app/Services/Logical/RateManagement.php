@@ -13,7 +13,7 @@ class RateManagement
 {
     public static function create(Offer $offer, Auction $auction)
     {
-        $offers = Offer::whereBetween('price', [0.5*$offer->getPrice(), 1.5*$offer->getPrice()])
+        $offers = Offer::whereBetween('price', self::selectAuctionParticients($offer->getPrice()))
             ->where('product_id', $offer->getProductId())
             ->get();
 
@@ -27,6 +27,13 @@ class RateManagement
         }
 
         return;
+    }
+
+    public static function selectAuctionParticients($price, $percents = 20)
+    {
+        $part = $percents/100;
+
+        return [(1-$part)*$price, (1+$part)*$price];
     }
 
     public static function updateFromRequest(UpdateRateRequest $request, Rate $rate)
