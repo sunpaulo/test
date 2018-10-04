@@ -60,4 +60,23 @@ trait Rate
 
         return $this;
     }
+
+    /**
+     * @return
+     */
+    public function getHiddenAuction()
+    {
+        return $this->hidden_auction;
+    }
+
+    /**
+     * @param $value bool
+     * @return $this
+     */
+    public function setHiddenAuction(bool $value)
+    {
+        $this->hidden_auction = $value;
+
+        return $this;
+    }
 }

@@ -16,8 +16,7 @@
             <tr>
                 <th>Product name</th>
                 <th class="text-left">Prices</th>
-                <th class="text-center">Status</th>
-                <th class="text-right">Update</th>
+                <th class="text-right">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -25,27 +24,24 @@
                 <tr>
                     <td>{{ $auction->product->getName() }}</td>
                     <td>{{ $auction->rates()->orderBy('value')->take(10)->pluck('value')->implode(', ') }}</td>
-                    @if ($auction->status === 'in_progress')
-                    <td class="text-center">
-                        <span class="label label-success">Is available</span>
-                    </td>
                     <td class="text-right">
+                    @if ($auction->status === 'in_progress')
                         <a class="btn btn-success" href="{{route('seller.rate.edit') . "?auction=$auction->id"}}">
                             {{ $auction->myRate }}
                         </a>
-                    </td>
                     @else
-                        <td class="text-center">
-                            <span class="label label-warning">Closed</span>
-                        </td>
-                        <td class="text-right">
-                            <span class="btn btn-warning">Closed</span>
-                        </td>
+                        <form action="{{ route('seller.auction.update', $auction) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('put') }}
+
+                            <input type="submit" value="Save" class="btn btn-primary">
+                        </form>
                     @endif
+                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">
+                    <td colspan="3" class="text-center">
                         <h2>No data</h2>
                     </td>
                 </tr>
@@ -53,7 +49,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="5">
+                <td colspan="3">
                     <ul class="pagination pull-right">
                         {{ $auctions->links() }}
                     </ul>

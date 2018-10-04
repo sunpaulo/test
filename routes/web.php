@@ -17,10 +17,15 @@ Route::group(['prefix' => 'seller','middleware' => ['auth', 'seller']], function
     Route::resource('/offer', 'OfferController', ['as' => 'seller'])->except(['index']);
     Route::get('/offer', 'OfferController@getOwnOffers')->name('seller.offer.index');
     Route::get('/product', 'ProductController')->name('seller.product.index');
-    Route::get('/auction', 'AuctionController@sellerIndex')->name('seller.auction.index');
-    Route::get('/rate', 'RateController@edit')->name('seller.rate.edit');
-    Route::put('/rate/{rate}', 'RateController@update')->name('seller.rate.update');
     Route::get('/order', 'OrderController@sellerIndex')->name('seller.order.index');
+    Route::group(['prefix' => 'auction'], function () {
+       Route::get('/', 'AuctionController@index')->name('seller.auction.index');
+       Route::put('/{auction}', 'AuctionController@update')->name('seller.auction.update');
+    });
+    Route::group(['prefix' => 'rate'], function () {
+        Route::get('/', 'RateController@edit')->name('seller.rate.edit');
+        Route::put('/{rate}', 'RateController@update')->name('seller.rate.update');
+    });
 });
 
 Route::get('/offer', 'OfferController@index')->name('offer');
@@ -33,7 +38,7 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'customer']], fun
         Route::post('/', 'OrderController@store')->name('customer.order.store');
     });
     Route::group(['prefix' => 'auction'], function () {
-        Route::get('/', 'AuctionController@customerIndex')->name('customer.auction.index');
+        Route::get('/', 'AuctionController@index')->name('customer.auction.index');
         Route::put('/{auction}', 'AuctionController@update')->name('customer.auction.update');
         Route::post('/', 'AuctionController@store')->name('customer.auction.store');
     });

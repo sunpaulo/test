@@ -20,6 +20,7 @@ class CreateRateTable extends Migration
             $table->unsignedInteger('auction_id');
             $table->unsignedInteger('seller_id');
             $table->float('value');
+            $table->boolean('hidden_auction')->default(false);
             $table->timestamps();
             $table->softDeletes();
 

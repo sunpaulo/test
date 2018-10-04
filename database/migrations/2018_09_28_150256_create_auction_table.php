@@ -21,6 +21,7 @@ class CreateAuctionTable extends Migration
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('product_id');
             $table->enum('status', AuctionStatus::values())->default(AuctionStatus::IN_PROGRESS);
+            $table->boolean('is_hidden')->default(false);
             $table->timestamps();
             $table->softDeletes();
 

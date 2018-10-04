@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Role;
 use App\Models\Auction;
 use App\Services\Logical\AuctionManagement;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class AuctionController extends Controller
 {
-    public function customerIndex()
+    public function index()
     {
-       $auctions = AuctionManagement::getCurrentCustomerAuctions();
+        if (Auth::user()->getRole() === Role::CUSTOMER) {
+            $auctions = AuctionManagement::getCurrentCustomerAuctions();
+        } else {
+            $auctions = AuctionManagement::getCurrentSellerAuctions();
+        }
 
-        return view('customer.auctions.index', [
-            'auctions' => $auctions->paginate(Auction::COUNT_ON_PAGE)
+        return view($this->getIndexView(), [
+            'auctions' => $auctions
         ]);
     }
 
@@ -26,6 +32,16 @@ class AuctionController extends Controller
         return view('seller.auctions.index', [
             'auctions' => $auctions
         ]);
+    }
+
+    public function getIndexRoute()
+    {
+        return Auth::user()->getRole() . '.auction.index';
+    }
+
+    public function getIndexView()
+    {
+        return Auth::user()->getRole() . '.auctions.index';
     }
 
     /**
@@ -47,5 +63,12 @@ class AuctionController extends Controller
         }
 
         return redirect()->route('offer');
+    }
+
+    public function update(Auction $auction)
+    {
+        AuctionManagement::hideAuction($auction);
+
+        return redirect()->route($this->getIndexRoute());
     }
 }

@@ -1,19 +1,20 @@
-<label for="">Product name</label>
+<h4>Product name</h4>
 <p>{{ $auction->product->getName() }}</p>
 
-<label for="seller">Select a seller</label>
-<div class="form-group{{ $errors->has('seller_id') ? ' has-error' : '' }}">
-    <select class="form-control" name="seller" id="seller">
-        @foreach($auction->rates as $rate)
-            <option value="{{ $rate->getSellerId() }}">
+<h4>Select a seller</h4>
+<div class="{{ $errors->has('seller') ? ' has-error' : '' }}">
+    @foreach($auction->rates as $rate)
+        <p>
+            <input type="radio" name="seller" id="choice{{$rate->id}}" value="{{ $rate->seller_id }}">
+            <label for="choice{{$rate->id}}">
                 {{ $rate->seller->getName(). ' : ' . $rate->getValue() . '$' }}
-            </option>
-        @endforeach
-    </select>
+            </label>
+        </p>
+    @endforeach
 
-    @if ($errors->has('seller_id'))
+    @if ($errors->has('seller'))
         <span class="help-block">
-            <strong>{{ $errors->first('seller_id') }}</strong>
+            <strong>{{ $errors->first('seller') }}</strong>
         </span>
     @endif
 </div>

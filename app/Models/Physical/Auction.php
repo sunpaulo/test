@@ -60,4 +60,23 @@ trait Auction
 
         return $this;
     }
+
+    /**
+     * @return
+     */
+    public function getIsHidden()
+    {
+        return $this->is_hidden;
+    }
+
+    /**
+     * @param $value bool
+     * @return $this
+     */
+    public function setIsHidden(bool $value)
+    {
+        $this->is_hidden = $value;
+
+        return $this;
+    }
 }

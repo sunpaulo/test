@@ -35,13 +35,18 @@
                             <a href="{{ route('customer.order.create') }}?auction={{ $auction->getId() }}" class="btn
                             btn-primary">Finish</a>
                         @else
-                        <button class="btn btn-success">Ordered</button>
+                            <form action="{{ route('customer.auction.update', $auction) }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('put') }}
+
+                                <input type="submit" value="Save" class="btn btn-primary">
+                            </form>
                         @endif
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center">
+                    <td colspan="5" class="text-center">
                         <h2>No data</h2>
                     </td>
                 </tr>
@@ -49,7 +54,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="6">
+                <td colspan="5">
                     <ul class="pagination pull-right">
                         {{ $auctions->links() }}
                     </ul>

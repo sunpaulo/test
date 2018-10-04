@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property $customer_id integer
  * @property $product_id integer
  * @property $status string
+ * @property $is_hidden boolean
  */
 class Auction extends Model
 {
@@ -20,7 +21,9 @@ class Auction extends Model
 
     protected $table = 'auction';
 
-    protected $fillable = ['customer_id', 'product_id', 'status'];
+    protected $fillable = ['customer_id', 'product_id', 'status', 'is_hidden'];
+
+    protected $hidden = ['is_hidden'];
 
     public function customer()
     {

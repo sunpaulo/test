@@ -11,6 +11,7 @@ use App\Models\Physical\Rate as Physical;
  * @property $auction_id integer
  * @property $seller_id integer
  * @property $value float
+ * @property $hidden_auction boolean
  */
 class Rate extends Model
 {
@@ -18,7 +19,9 @@ class Rate extends Model
 
     protected $table = 'rate';
 
-    protected $fillable = ['auction_id', 'seller_id', 'value'];
+    protected $fillable = ['auction_id', 'seller_id', 'value', 'hidden_auction'];
+
+    protected $hidden = ['hidden_auction'];
 
     public function auction()
     {
