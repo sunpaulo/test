@@ -1,5 +1,5 @@
-<label for="">Product title</label>
-<input type="text" class="form-control" name="name" placeholder="Product title"
+<label for="">Product name</label>
+<input type="text" class="form-control" name="name" placeholder="Product name"
        value="{{ $product->name or "" }}" required>
 
 <label for="">Slug (unique)</label>

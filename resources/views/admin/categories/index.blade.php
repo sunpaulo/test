@@ -15,7 +15,7 @@
             <i class="fa fa-plus-square-o"></i> Create category</a>
         <table class="table table-striped">
             <thead>
-            <th>Title</th>
+            <th>Name</th>
             <th class="text-right">Action</th>
             </thead>
             <tbody>
